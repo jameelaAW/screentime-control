@@ -18,14 +18,14 @@ Goal: auto-split into device + activity + duration estimate.
 
 ## Events to Track
 - session_logged, session_edited, session_deleted
-- limit_approached (≥80% of daily_limit)
+- limit_approached (≥75% of daily_limit)
 - limit_exceeded (>100%)
 - child_added, limit_changed
 
 ## Scoring Rules (start rule-based, give numbers)
 - **Usage ratio** = today_total / daily_limit_minutes.
-  - < 0.8 → green
-  - 0.8–1.0 → amber
+  - < 0.75 → green
+  - 0.75–1.0 → amber
   - > 1.0 → red
 - **Weekly balance score** (later) = avg(usage_ratio) over 7 days; >1.2 flagged.
 - **Activity mix** (later): educational <25% of weekly minutes → low score.

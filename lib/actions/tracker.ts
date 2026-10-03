@@ -1,5 +1,5 @@
 'use server';
-import { database } from '@/lib/data/tracker';
+import { childExists,insertLoggedSession } from '@/lib/data/tracker';
 import { revalidatePath } from 'next/cache';
 export async function logSession(form:FormData):Promise<{error?:string;success?:string}> {
  try {
@@ -8,10 +8,11 @@ export async function logSession(form:FormData):Promise<{error?:string;success?:
  if(isNaN(start.getTime()))return {error:'Choose a valid start time.'};
  if(!['tv','tablet','phone','computer','game-console'].includes(device_type)||!['video','game','educational','social','browsing'].includes(activity_type))return {error:'Choose a device and activity.'};
  if(notes.length>2000)return {error:'Keep notes under 2,000 characters.'};
- const db=database();const child=await db.from('children').select('id').eq('id',child_id).single();
- if(child.error)return {error:'Choose an existing child.'};
- const result=await db.from('screen_sessions').insert({child_id,started_at:start.toISOString(),ended_at:new Date(start.getTime()+duration*60000).toISOString(),duration_minutes:duration,device_type,activity_type,notes});
+ const exists=await childExists(child_id);
+ if(!exists)return {error:'Choose an existing child.'};
+ const result=await insertLoggedSession({child_id,started_at:start.toISOString(),ended_at:new Date(start.getTime()+duration*60000).toISOString(),duration_minutes:duration,device_type,activity_type,notes});
  if(result.error)return {error:"Couldn't save — try again."};
  revalidatePath('/','layout');return {success:'Session saved. Today’s totals are updated.'};
  }catch{return {error:"Couldn't save — try again."};}
 }
+

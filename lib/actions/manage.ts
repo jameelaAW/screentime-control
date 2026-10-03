@@ -1,5 +1,5 @@
 'use server';
-import {database} from '@/lib/data/tracker';
+import {mutateTracker} from '@/lib/data/tracker';
 import {revalidatePath} from 'next/cache';
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export async function manageRecord(form:FormData):Promise<{error?:string;success?:string}>{
@@ -24,8 +24,9 @@ export async function manageRecord(form:FormData):Promise<{error?:string;success
  payload={child_id,started_at:start.toISOString(),ended_at:new Date(start.getTime()+duration*60000).toISOString(),duration_minutes:duration,device_type,activity_type,notes};
  }
  }
- const {error}=await database().rpc('mutate_screen_time',{entity,operation,record_id:id||null,payload,reason});
+ const {error}=await mutateTracker({entity,operation,record_id:id||null,payload,reason});
  if(error)return {error:error.message.includes('Too many')?'Too many changes. Wait a minute and try again.':"Couldn't save — try again."};
  revalidatePath('/','layout');return {success:operation==='delete'?'Record removed. Totals updated.':'Changes saved.'};
  }catch{return {error:"Couldn't save — try again."};}
 }
+

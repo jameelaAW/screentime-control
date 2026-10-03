@@ -1,41 +1,32 @@
-# vibe-stack-supabase
+# Screen Time Control
 
-Next.js 15 + Supabase starter for shipping vibe-coded apps fast. Clone, provision, build.
+A working, no-login caregiver demo: manage children and daily limits, log screen sessions, edit/delete records with reasons, and view today's usage and session history.
 
-## Stack
+Production: https://screentime-control.vercel.app
 
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 15 (App Router, React 19, Server Actions) |
-| Language | TypeScript strict |
-| Styles | Tailwind CSS v4 (CSS-first, no config file) |
-| Auth + DB | Supabase (`@supabase/ssr`) |
-| Package manager | Bun |
-| Deploy | Vercel |
+## Run locally
 
-## Quick start
+1. `npm ci`
+2. `vercel link` then `vercel env pull .env.local`
+3. Apply unapplied files in `supabase/migrations/` in order to the linked Supabase project.
+4. `npm run dev`
 
-```bash
-bun install
-cp .env.example .env.local   # fill in your Supabase keys
-bun dev
-```
+All database access lives in `lib/data/`. Server actions validate mutations; database triggers atomically append before/after audit records. Audit records cannot be modified by anonymous or authenticated API clients. Database writes are limited to 120 audit-producing changes per minute across the shared demo.
 
-Open http://localhost:3000. Edit `app/page.tsx` to start building.
+Daily totals use the browser's local day. The dashboard refreshes after logging and every 30 seconds. Amber starts at 75% to satisfy the PRD's 90/120 acceptance scenario; red means strictly above the limit.
 
-## Provisioning a new project
+## Validation (3 October 2026)
 
-Use the `/new-vibe-project <name>` skill (see `claude-dotfiles` repo) which:
-1. Clones this template and renames it
-2. Creates a new GitHub repo and pushes
-3. Creates a Supabase project and injects URL + anon key
-4. Creates a Vercel project linked to the GitHub repo
-5. Triggers first deploy and returns the preview URL
+- Production Vercel build passed, including TypeScript checks.
+- Public URL tested without login; seeded children and persisted sessions visible.
+- UI: logged 30 minutes for Mia, verified dashboard update, reload persistence, one session row and one atomic audit entry.
+- UI: added child with 60-minute limit, logged 70 minutes and verified red; edited session to 40 minutes and changed child limit to 90 minutes, with reasons persisted in audit entries.
+- Live database: create/edit/delete child and session; invalid duration rejected; test records cleaned up without altering existing records.
+- Production dependency audit: zero vulnerabilities. Full audit reports five development-only advisories through ESLint's `fast-glob` / `micromatch` / `braces` dependency; the current published braces version has no fix.
+- Local production build/server execution is restricted by the Windows sandbox; final builds and browser checks run on Vercel.
 
-## Working with AI
+## Scope
 
-See [CLAUDE.md](CLAUDE.md) for conventions. This repo is pre-wired for gstack — start with `/office-hours`.
+This is a public, shared demo workspace. Use fictional children. Auth and owner-scoped RLS are the later lock-down sprint; AI insights and reports are also deferred, per the PRD. No OS-level device blocking is implemented.
 
-## Switching to Neon
-
-If you need Postgres without Supabase (e.g. prefer Drizzle ORM + Clerk for auth), a `vibe-stack-neon` variant is planned. For now: fork this and swap `@supabase/ssr` for `drizzle-orm` + `@neondatabase/serverless`, add Clerk or NextAuth.
+Deploy only by committing and pushing to `main`; Vercel is connected to the GitHub repository. Never deploy local files using `vercel deploy`.

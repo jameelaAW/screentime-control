@@ -10,6 +10,7 @@ const localStart=()=>{const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezo
 export default function Tracker({children,sessions,view='dashboard'}:{children:Child[];sessions:Session[];view?:string}){
  const router=useRouter();const [today,setToday]=useState(''),[start,setStart]=useState(''),[message,setMessage]=useState(''),[error,setError]=useState(''),[pending,begin]=useTransition(),[selectedChild,setSelectedChild]=useState('');
  useEffect(()=>{if(new URLSearchParams(window.location.search).has('saved'))setMessage('Session saved. Today’s totals are updated.');setToday(dayOf(new Date().toISOString()));setStart(localStart());setSelectedChild(new URLSearchParams(window.location.search).get('child')||children[0]?.id||'');},[]);
+ useEffect(()=>{if(view!=='dashboard')return;const timer=setInterval(()=>{setToday(dayOf(new Date().toISOString()));router.refresh();},30000);return ()=>clearInterval(timer);},[view,router]);
  const totals=new Map(children.map(c=>[c.id,sessions.filter(s=>s.child_id===c.id&&dayOf(s.started_at)===today).reduce((n,s)=>n+s.duration_minutes,0)]));
  const ranked=[...children].sort((a,b)=>totals.get(b.id)!/b.daily_limit_minutes-totals.get(a.id)!/a.daily_limit_minutes);
  const navigation=<><Link aria-current={view==='dashboard'?'page':undefined} href="/">Today’s dashboard</Link><Link aria-current={view==='sessions'?'page':undefined} href="/sessions">Log session</Link><Link aria-current={view==='children'?'page':undefined} href="/children">Children & limits</Link></>;
@@ -19,4 +20,5 @@ export default function Tracker({children,sessions,view='dashboard'}:{children:C
  {view==='children'&&<Management children={children} sessions={sessions}/>} 
  <footer>Screen Time Control · Logged moments, clearer days.</footer></main></div>;
 }
+
 
