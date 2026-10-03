@@ -27,5 +27,10 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^5"
   },
-  "packageManager": "bun@1.1.30"
+  "packageManager": "bun@1.1.30",
+  "overrides": {
+    "postcss": "^8.5.28",
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8"
+  }
 }
