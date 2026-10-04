@@ -13,6 +13,7 @@
 ## Architecture
 
 - Core engine logs screen sessions (per-screen session records) and powers a today's dashboard inside a nav shell.
+- A daily screen-time allowance concept was added: repeated login/logout sessions now count against one daily allowance (rather than existing as fully independent session records), extending sprint 2's session management.
 
 ## Gotchas
 
