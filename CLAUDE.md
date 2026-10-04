@@ -28,3 +28,5 @@
 - sprint 2 delivered child limits and audited session management (feat commit).
 - Launchpad verification notes were preserved into the repo via a merge commit so they survive alongside the code.
 - caregiver workflows were completed and end-to-end verification documented via a fix commit, extending the engine beyond child limits/audited session management.
+- feat: caregivers are now notified when a child reaches the daily screen-time limit, extending the daily allowance/limits feature.
+- merge: Launchpad timer notes were preserved into the repo via a merge commit so they survive alongside the code.
