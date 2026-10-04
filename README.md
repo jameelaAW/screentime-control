@@ -30,3 +30,9 @@ Daily totals use the browser's local day. The dashboard refreshes after logging 
 This is a public, shared demo workspace. Use fictional children. Auth and owner-scoped RLS are the later lock-down sprint; AI insights and reports are also deferred, per the PRD. No OS-level device blocking is implemented.
 
 Deploy only by committing and pushing to `main`; Vercel is connected to the GitHub repository. Never deploy local files using `vercel deploy`.
+
+## Whole-day login/logout tracking (4 October 2026)
+
+Use each child's **Log in / start** and **Log out / stop** buttons when screen use begins and ends. Every login creates a persistent session; logout closes it using the database clock. Logging in again starts another session without resetting the daily allowance. Running sessions survive page reloads and continue counting until explicitly logged out. Breaks are excluded, overlapping active logins for one child are prevented, and cross-midnight sessions count only their overlap with each local calendar day. Totals use timestamp precision, rounded to one decimal minute only for display; repeated short visits do not incur a one-minute rounding charge each time. Retrospective manual logging remains available.
+
+Verified two persisted login/logout cycles, duplicate start/stop rejection, atomic audit entries, and cumulative usage. `node tests/session-time.test.cjs` covers repeated visits, breaks, running sessions, local midnight, and short-session precision.

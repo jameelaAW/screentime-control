@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const ts=require('typescript'),fs=require('node:fs'),vm=require('node:vm');
+const moduleExports={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync(require.resolve('../lib/session-time.ts'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{exports:moduleExports,Date,Math,Number});
+const {minutesForDay,displayMinutes}=moduleExports;
+const today=new Date(2026,9,4,12),now=+today;
+const session=(start,end)=>({started_at:new Date(2026,9,4,...start).toISOString(),ended_at:end?new Date(2026,9,4,...end).toISOString():null,duration_minutes:0});
+assert.equal(minutesForDay(session([9,0],[9,20]),today,now)+minutesForDay(session([11,0],[11,30]),today,now),50,'Two logins share the daily total; the break is excluded');
+assert.equal(minutesForDay(session([11,40],null),today,now),20,'Running session counts elapsed time');
+assert.equal(minutesForDay(session([13,0],null),today,now),0,'Future active start never subtracts from total');
+const overnight={started_at:new Date(2026,9,3,23,50).toISOString(),ended_at:new Date(2026,9,4,0,20).toISOString(),duration_minutes:30};
+assert.equal(minutesForDay(overnight,today,now),20,'Midnight splits daily usage');
+assert.equal(minutesForDay(overnight,new Date(2026,9,3,12),now),10);
+assert.equal(minutesForDay(session([10,0,0],[10,0,20]),today,now)*3,1,'Short repeat sessions accumulate exact elapsed time before display rounding');
+assert.equal(displayMinutes(1/3),.3);
+console.log('PASS: repeated sessions, breaks, active elapsed time, future starts, midnight, sub-minute precision.');

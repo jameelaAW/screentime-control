@@ -22,3 +22,5 @@ export async function childExists(id:string) {
 }
 export async function insertLoggedSession(payload:Record<string,unknown>) { return database().from('screen_sessions').insert(payload); }
 export async function mutateTracker(input:{entity:string;operation:string;record_id:string|null;payload:Record<string,unknown>;reason:string}) { return database().rpc('mutate_screen_time',input); }
+
+export async function timerMutation(operation:string,id:string,device:string,activity:string){return operation==='start'?database().rpc('start_screen_time',{child:id,device,activity}):database().rpc('stop_screen_time',{session:id});}
