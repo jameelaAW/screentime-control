@@ -54,3 +54,4 @@
 - A 'Keeping content safe' section was added to the in-app user guide (/help).
 - a Payhip licence-key gate was added but is off until switched on (feat commit)
 - support contact email changed to support@mzdigitalbuys.com via docs commit
+- the in-app user guide (/help) is now linked from the activation page (feat commit)
