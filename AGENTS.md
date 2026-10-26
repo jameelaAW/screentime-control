@@ -55,3 +55,4 @@
 - a Payhip licence-key gate was added but is off until switched on (feat commit)
 - support contact email changed to support@mzdigitalbuys.com via docs commit
 - the in-app user guide (/help) is now linked from the activation page (feat commit)
+- a one-page 'Start here' PDF for Payhip buyers was added as documentation (docs commit)
