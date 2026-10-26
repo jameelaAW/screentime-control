@@ -48,7 +48,7 @@ export default function HelpPage() {
       <section id="quick-start">
         <h2>Quick start (5 steps)</h2>
         <ol>
-          <li><strong>Create your account</strong> and confirm your email, then sign in.</li>
+          <li><strong>Create your account</strong> and confirm your email, then sign in and enter the <strong>licence key</strong> from your purchase when asked.</li>
           <li>Go to <strong>Children &amp; limits</strong>, press <strong>+ Add child</strong>, and enter a name and a daily limit in minutes.</li>
           <li>On the <strong>Today&apos;s dashboard</strong>, press <strong>Log in / start</strong> on the child&apos;s card when they begin using a screen.</li>
           <li>Press <strong>Log out / stop</strong> when they finish. Do this every time, because the app cannot see the device.</li>
@@ -85,6 +85,7 @@ export default function HelpPage() {
           <li>Enter your email and a password of <strong>at least 8 characters</strong>.</li>
           <li>We send you an email. <strong>Open the link in it</strong> to confirm your address. Check your spam folder if it does not arrive.</li>
           <li>Go back to the app and press <strong>Sign in</strong> with the same email and password.</li>
+          <li>The first time you sign in you are asked for your <strong>licence key</strong>. Copy it from your Payhip receipt or the email Payhip sent you, paste it in and press <strong>Activate</strong>. You only do this once. <strong>Each key works for one account</strong>, so use the email address you want to keep.</li>
         </ol>
         <h3>Forgot your password?</h3>
         <ol>
@@ -240,6 +241,10 @@ export default function HelpPage() {
         <p>They have used all of today&apos;s time. Raise their limit under <strong>Children &amp; limits</strong> if you want to allow more, or wait for tomorrow.</p>
         <h3>I did not get the confirmation or reset email.</h3>
         <p>Check your spam folder and wait a few minutes. Make sure the address is spelled correctly. Then try again. If the link says it has expired, request a new one and open it in the same browser.</p>
+        <h3>My licence key is not accepted.</h3>
+        <p>Copy it again from your Payhip receipt or email and paste it exactly, without extra spaces. Letters can be upper or lower case. If it still fails, the key may have been refunded or disabled. Email us the address you used to buy.</p>
+        <h3>It says my licence key has already been used.</h3>
+        <p>Each key activates one account. If you already activated it, sign in with that same account. If you did not, email us with your Payhip order details and we will help.</p>
         <h3>The totals look wrong, or the day changes at the wrong time.</h3>
         <p>The day follows the time zone of your phone or computer. Check that its date, time and time zone are correct, then reload the app.</p>
         <h3>The numbers did not update.</h3>

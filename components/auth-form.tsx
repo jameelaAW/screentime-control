@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { useActionState, useState } from 'react';
 import { signIn, signUp, type AuthState } from '@/lib/actions/auth';
 
-export default function AuthForm({ initialError }: { initialError?: string }) {
+export default function AuthForm({ initialError, licenseRequired }: { initialError?: string; licenseRequired?: boolean }) {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [state, action, pending] = useActionState<AuthState, FormData>(mode === 'signin' ? signIn : signUp, initialError ? { error: initialError } : {});
   return (
     <section className="auth-card">
       <h1>{mode === 'signin' ? 'Welcome back' : 'Create your account'}</h1>
       <p className="muted">{mode === 'signin' ? 'Sign in to see the children in your care.' : 'Your children and their screen time stay private to you.'}</p>
+      {mode === 'signup' && licenseRequired && <p className="notice">You will need the <strong>licence key from your purchase</strong>. After you confirm your email and sign in, you enter it once to activate your account.</p>}
       {state.error && <p className="error" role="alert">{state.error}</p>}
       {state.notice && <p className="notice" role="status">{state.notice}</p>}
       <form action={action}>

@@ -1,4 +1,5 @@
 import 'server-only';
+import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { MAX_RUN_MINUTES } from '@/lib/session-time';
 import { getTz } from '@/lib/time';
@@ -8,6 +9,8 @@ export type Session = { id:string; child_id:string; started_at:string; ended_at:
 export async function database() { return createClient(); }
 export async function readTracker() {
  const db=await database();
+ const gate=await db.rpc('license_status'); // {required, licensed}; absent/failed means the gate is not in place yet
+ if(gate.data?.required&&!gate.data?.licensed)redirect('/activate');
  await db.rpc('auto_stop_screen_time',{max_minutes:MAX_RUN_MINUTES,tz:await getTz()}); // stop timers at the daily limit / max run time; the dashboard also caps them, so a failure here is safe to ignore
  const c=await db.from('children').select('*').order('name');
  if(c.error) throw Error('Could not load child profiles.');
