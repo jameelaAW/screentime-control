@@ -46,3 +46,5 @@
 - merge: Launchpad timer notes were preserved into the repo via a merge commit so they survive alongside the code.
 - icons were generated (not hand-crafted) as part of the PWA setup
 - forgot password / reset password flow was recently added (feat commit)
+- daily screen-time limit reminders are now delivered even while the child is still on screen (still-on-screen reminders), not only after the fact.
+- the running timer is now stopped as soon as a child hits the daily screen-time limit, so the limit cuts the session off mid-use (this is in addition to the 3-hour inactivity guard).
