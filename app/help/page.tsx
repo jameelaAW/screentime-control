@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 // Shown to buyers in the guide. Change it here and in the PDF (regenerate) if it ever moves.
-const SUPPORT_EMAIL = 'mzdigitalbuys@outlook.com';
+const SUPPORT_EMAIL = 'support@mzdigitalbuys.com';
 
 const toc: [string, string][] = [
   ['quick-start', 'Quick start (5 steps)'],

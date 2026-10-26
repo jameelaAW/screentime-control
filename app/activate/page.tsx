@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
-const SUPPORT_EMAIL = 'mzdigitalbuys@outlook.com';
+const SUPPORT_EMAIL = 'support@mzdigitalbuys.com';
 
 // Reached by signed-in accounts that have not activated a licence key yet.
 // Signed-out visitors are sent to /login by the route guard.
