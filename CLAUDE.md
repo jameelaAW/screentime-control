@@ -10,6 +10,10 @@
 - `lint`: `next lint`
 - `start`: `next start`
 
+## Decisions
+
+- a running timer is automatically stopped after 3 hours of inactivity (forgotten timers guard).
+
 ## Architecture
 
 - Core engine logs screen sessions (per-screen session records) and powers a today's dashboard inside a nav shell.
@@ -18,6 +22,7 @@
 ## Gotchas
 
 - The initial Supabase migration was not executable (e.g. missing shebang/permissions) and was fixed via commit 'fix: make initial Supabase migration executable'.
+- timers that were accidentally left running are auto-stopped at the 3-hour mark to prevent unbounded session records.
 
 ## Notes
 
