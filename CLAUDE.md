@@ -45,3 +45,4 @@
 - feat: caregivers are now notified when a child reaches the daily screen-time limit, extending the daily allowance/limits feature.
 - merge: Launchpad timer notes were preserved into the repo via a merge commit so they survive alongside the code.
 - icons were generated (not hand-crafted) as part of the PWA setup
+- forgot password / reset password flow was recently added (feat commit)
