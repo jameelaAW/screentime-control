@@ -1,11 +1,12 @@
 import 'server-only';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase/server';
 import { MAX_RUN_MINUTES } from '@/lib/session-time';
 export type Child = { id:string; name:string; age:number|null; daily_limit_minutes:number; notes:string|null };
 export type Session = { id:string; child_id:string; started_at:string; ended_at:string|null; duration_minutes:number; device_type:string; activity_type:string; notes:string|null };
-export function database() { return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {auth:{persistSession:false,autoRefreshToken:false}}); }
+/** Supabase client bound to the signed-in caregiver's session, so row-level security applies to every query. */
+export async function database() { return createClient(); }
 export async function readTracker() {
- const db=database();
+ const db=await database();
  await db.rpc('auto_stop_screen_time',{max_minutes:MAX_RUN_MINUTES}); // close forgotten timers; the dashboard also caps them, so a failure here is safe to ignore
  const c=await db.from('children').select('*').order('name');
  if(c.error) throw Error('Could not load child profiles.');
@@ -19,10 +20,10 @@ export async function readTracker() {
  return {children:c.data as Child[],sessions};
 }
 export async function childExists(id:string) {
- const result=await database().from('children').select('id').eq('id',id).single();
+ const result=await (await database()).from('children').select('id').eq('id',id).single();
  return !result.error;
 }
-export async function insertLoggedSession(payload:Record<string,unknown>) { return database().from('screen_sessions').insert(payload); }
-export async function mutateTracker(input:{entity:string;operation:string;record_id:string|null;payload:Record<string,unknown>;reason:string}) { return database().rpc('mutate_screen_time',input); }
+export async function insertLoggedSession(payload:Record<string,unknown>) { return (await database()).from('screen_sessions').insert(payload); }
+export async function mutateTracker(input:{entity:string;operation:string;record_id:string|null;payload:Record<string,unknown>;reason:string}) { return (await database()).rpc('mutate_screen_time',input); }
 
-export async function timerMutation(operation:string,id:string,device:string,activity:string){return operation==='start'?database().rpc('start_screen_time',{child:id,device,activity}):database().rpc('stop_screen_time',{session:id});}
+export async function timerMutation(operation:string,id:string,device:string,activity:string){const db=await database();return operation==='start'?db.rpc('start_screen_time',{child:id,device,activity}):db.rpc('stop_screen_time',{session:id});}

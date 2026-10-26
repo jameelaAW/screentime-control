@@ -1,45 +1,50 @@
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+// Pages anyone may open without signing in. API routes enforce their own rules.
+const isPublic = (path: string) =>
+  path === "/login" || path.startsWith("/auth/") || path.startsWith("/api/");
+
+function redirectTo(request: NextRequest, path: string, from?: NextResponse) {
+  const target = request.nextUrl.clone();
+  target.pathname = path;
+  target.search = "";
+  const redirect = NextResponse.redirect(target);
+  from?.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+  return redirect;
+}
+
 export async function updateSession(request: NextRequest) {
-  const supabaseResponse = NextResponse.next({ request });
+  let response = NextResponse.next({ request });
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // If Supabase isn't configured, skip the auth refresh and pass through.
-  // Without this guard createServerClient throws "Your project's URL and Key
-  // are required", crashing the edge middleware on every route (500
-  // MIDDLEWARE_INVOCATION_FAILED).
-  if (!url || !anonKey) {
-    return supabaseResponse;
-  }
+  // Not configured (e.g. a fresh clone): nothing to authenticate against.
+  if (!url || !anonKey) return response;
 
+  const path = request.nextUrl.pathname;
   try {
-    let response = supabaseResponse;
     const supabase = createServerClient(url, anonKey, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet: { name: string; value: string; options: import("@supabase/ssr").CookieOptions }[]) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           response = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
-          );
+          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         },
       },
     });
 
-    // Refresh session so it doesn't expire while user is active
-    await supabase.auth.getUser();
+    // Also refreshes the session so it doesn't expire while the caregiver is active.
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user && !isPublic(path)) return redirectTo(request, "/login", response);
+    if (user && path === "/login") return redirectTo(request, "/", response);
     return response;
   } catch {
-    // Never let an auth hiccup crash the entire edge middleware
-    return supabaseResponse;
+    // Fail closed: if we can't verify the session, don't show private pages.
+    return isPublic(path) ? response : redirectTo(request, "/login");
   }
 }
-
