@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { TzCookie } from "@/components/TzCookie";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased"><TzCookie />{children}</body>
     </html>
   );
 }

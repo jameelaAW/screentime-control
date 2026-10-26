@@ -8,5 +8,13 @@ export function minutesForDay(session:TimedSession,day:Date,now:number):number{
  if(!Number.isFinite(start)||!Number.isFinite(end))return 0;
  return Math.max(0,Math.min(end,to.getTime())-Math.max(start,from.getTime()))/60000;
 }
+/** Remind the caregiver this often while a timer keeps running. */
+export const REMIND_EVERY_MINUTES=30;
+/** Heads-up this many minutes before a child reaches their daily limit. */
+export const WARN_BEFORE_LIMIT_MINUTES=5;
+/** Today's total: finished sessions plus the running one, which cannot count past the daily limit (the server stops it there). */
+export function capRunning(finishedMinutes:number,runningMinutes:number,limit:number):number{return finishedMinutes+Math.min(runningMinutes,Math.max(0,limit-finishedMinutes));}
+/** True once a running session has gone `every` minutes since it started or was last confirmed as still on screen. */
+export function reminderDue(startedMs:number,confirmedMs:number|null,nowMs:number,every:number=REMIND_EVERY_MINUTES):boolean{return nowMs-Math.max(startedMs,confirmedMs??0)>=every*60000;}
 export const displayMinutes=(minutes:number)=>Math.round(minutes*10)/10;
 
