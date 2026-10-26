@@ -56,3 +56,5 @@
 - support contact email changed to support@mzdigitalbuys.com via docs commit
 - the in-app user guide (/help) is now linked from the activation page (feat commit)
 - a one-page 'Start here' PDF for Payhip buyers was added as documentation (docs commit)
+- Privacy, Terms and Refund pages were added as a draft (committed but not yet confirmed final).
+- The latest commit adds Privacy, Terms and Refund pages in draft status — they have not been formally confirmed/reviewed yet.
