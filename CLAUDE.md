@@ -18,11 +18,19 @@
 
 - Core engine logs screen sessions (per-screen session records) and powers a today's dashboard inside a nav shell.
 - A daily screen-time allowance concept was added: repeated login/logout sessions now count against one daily allowance (rather than existing as fully independent session records), extending sprint 2's session management.
+- a daily screen-time allowance was added; repeated login/logout sessions count against a single daily allowance instead of being fully independent session records
+- caregivers are notified when a child reaches the daily screen-time limit
+- sprint 2: child limits and audited session management, extending the sprint 1 core engine
+- a running timer is auto-stopped after 3 hours of inactivity (forgotten timers guard)
+- caregiver login and per-user data implemented (sprint 3)
+- sprint 1: core engine logs screen sessions (per-screen session records) and powers a today's dashboard inside a nav shell
 
 ## Gotchas
 
 - The initial Supabase migration was not executable (e.g. missing shebang/permissions) and was fixed via commit 'fix: make initial Supabase migration executable'.
 - timers that were accidentally left running are auto-stopped at the 3-hour mark to prevent unbounded session records.
+- the first supabase migration was not executable and was fixed via commit 'fix: make initial supabase migration executable'
+- launchpad verification notes and timer notes were preserved into the repo via merge commits so they survive alongside code
 
 ## Notes
 
