@@ -53,3 +53,4 @@
 - daily screen-time limit reminders are delivered even while the child is still on screen (still-on-screen reminders)
 - A 'Keeping content safe' section was added to the in-app user guide (/help).
 - a Payhip licence-key gate was added but is off until switched on (feat commit)
+- support contact email changed to support@mzdigitalbuys.com via docs commit
