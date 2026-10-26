@@ -19,6 +19,7 @@ const toc: [string, string][] = [
   ['manual', 'Log a session after the fact'],
   ['history', 'Session history: edit and delete'],
   ['dashboard', 'Reading the dashboard'],
+  ['content-safe', 'Keeping content safe'],
   ['privacy', 'Privacy and your data'],
   ['faq', 'Questions and fixes'],
 ];
@@ -55,6 +56,7 @@ export default function HelpPage() {
         <h2>What the app does, and what it does not</h2>
         <p>Screen Time Control is a <strong>tracker for caregivers</strong>. You tell it when a child starts and stops, and it adds up the day, compares it with the daily limit, and shows who is close to or over it.</p>
         <p><strong>It does not read the child&apos;s phone, tablet or TV.</strong> It cannot see what a child is doing, and it cannot lock or switch off a device. The times are the ones you record with the buttons, so the totals are only as accurate as those button presses.</p>
+        <p><strong>It does not block websites or apps, and it does not monitor what a child watches, plays or types</strong>, including chat or language in online games. See <a href="#content-safe">Keeping content safe</a> for what to use alongside it.</p>
         <ul>
           <li>Works for one child or many, such as a family or a daycare room.</li>
           <li>Each caregiver has a private account and sees only their own children.</li>
@@ -178,6 +180,44 @@ export default function HelpPage() {
         <p>Children closest to or over their limit are listed first. Each card also shows the minutes remaining, or how far over the child is.</p>
       </section>
 
+      <section id="content-safe">
+        <h2>Keeping content safe</h2>
+        <p>This app tracks <strong>how long</strong> a child is on a screen. It does <strong>not</strong> check <strong>what</strong> they see or say. It has no website blocking, no filtering by age rating, and no monitoring of chat or language in online games.</p>
+        <p>For that, use the free parental controls that already exist on the devices, games and home network your child uses. Use them <strong>alongside</strong> this app.</p>
+        <table className="guide-table">
+          <thead><tr><th>You want to…</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td>Track time and keep to a daily limit</td><td>This app</td></tr>
+            <tr><td>Block or approve apps and websites, set age ratings, restrict purchases</td><td>The device&apos;s own parental controls</td></tr>
+            <tr><td>Control who can chat with your child in a game</td><td>The game or platform&apos;s own settings</td></tr>
+            <tr><td>Filter adult content for every device at home</td><td>Your home router or a family-friendly DNS service</td></tr>
+          </tbody>
+        </table>
+        <h3>On the device</h3>
+        <ul>
+          <li><strong>Apple iPhone and iPad:</strong> Screen Time, then Content &amp; Privacy Restrictions, to limit apps, web content, age ratings and purchases.</li>
+          <li><strong>Android:</strong> Google Family Link, to approve apps and set content filters.</li>
+          <li><strong>Windows:</strong> Microsoft Family Safety.</li>
+        </ul>
+        <h3>In games and video apps</h3>
+        <ul>
+          <li>Open the parental-control or privacy settings for each platform your child uses, such as Xbox, PlayStation, Nintendo Switch, Roblox, Minecraft and YouTube Kids.</li>
+          <li><strong>Check who can message your child.</strong> Where the game allows it, turn chat off or limit it to people you have approved, and require your approval for friend requests.</li>
+        </ul>
+        <h3>On your home network</h3>
+        <ul>
+          <li>Many routers have parental controls. You can also use a family-friendly DNS service, for example CleanBrowsing or OpenDNS FamilyShield, to filter adult websites on every device on your Wi-Fi.</li>
+          <li>Filters help but are not perfect, and they do not cover mobile data away from home.</li>
+        </ul>
+        <h3>Talk with your child</h3>
+        <ul>
+          <li>Agree simple rules together, and keep screens in shared spaces where you can.</li>
+          <li>Tell your child they can always come to you if something online upsets or confuses them, and that they will not be in trouble.</li>
+          <li>Use the <strong>activity</strong> and <strong>note</strong> fields in this app to keep a record of what they were doing.</li>
+        </ul>
+        <p className="muted">Menus and names change from time to time, so check each company&apos;s own help pages for the current steps. Screen Time Control is not affiliated with any of the products named here.</p>
+      </section>
+
       <section id="privacy">
         <h2>Privacy and your data</h2>
         <ul>
@@ -202,8 +242,8 @@ export default function HelpPage() {
         <p>The dashboard refreshes by itself about every 30 seconds. Pull down to reload, or close and reopen the app.</p>
         <h3>I can&apos;t edit a session.</h3>
         <p>Running sessions can only be stopped, not edited. Stop it first, then edit it from the history.</p>
-        <h3>Can the app block the child&apos;s device?</h3>
-        <p>No. It records and reminds. You decide when the screen goes off.</p>
+        <h3>Can the app block the child&apos;s device, or filter what they see?</h3>
+        <p>No. It records and reminds. You decide when the screen goes off. It also does not filter websites or monitor chat, so see <a href="#content-safe">Keeping content safe</a> for tools that do.</p>
         <h3>Does it work without internet?</h3>
         <p>No. You need a connection to start, stop and see totals.</p>
         <p className="muted">Still stuck? Contact the person who gave you this app.</p>
