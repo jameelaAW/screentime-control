@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import AuthForm from '@/components/auth-form';
 
 export const dynamic = 'force-dynamic';
@@ -8,6 +9,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     <main className="auth-page">
       <p className="brand">◷ Screen Time</p>
       <AuthForm initialError={error === 'confirm' ? 'That confirmation link has expired or was already used. Try signing in.' : undefined} />
+      <p className="muted"><Link href="/help">New here? Read the user guide</Link></p>
     </main>
   );
 }
