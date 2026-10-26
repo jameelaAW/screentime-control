@@ -51,3 +51,4 @@
 - feat: in-app user guide (/help) and printable PDF was recently committed
 - the running timer is stopped as soon as a child hits the daily screen-time limit (cuts session off mid-use)
 - daily screen-time limit reminders are delivered even while the child is still on screen (still-on-screen reminders)
+- A 'Keeping content safe' section was added to the in-app user guide (/help).
