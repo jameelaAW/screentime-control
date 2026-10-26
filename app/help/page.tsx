@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: 'How to set up and use Screen Time Control: add children, set daily limits, run the timer and review history.',
 };
 
+// Shown to buyers in the guide. Change it here and in the PDF (regenerate) if it ever moves.
+const SUPPORT_EMAIL = 'mzdigitalbuys@outlook.com';
+
 const toc: [string, string][] = [
   ['quick-start', 'Quick start (5 steps)'],
   ['what-it-does', 'What the app does, and what it does not'],
@@ -31,6 +34,7 @@ export default function HelpPage() {
         <p className="eyebrow">USER GUIDE</p>
         <h1>Screen Time Control</h1>
         <p className="muted">Everything you need to track children&apos;s screen time against a daily limit, in plain language.</p>
+        <p className="muted">Need help? Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
         <p className="no-print guide-actions">
           <Link className="button" href="/">Open the app</Link> <PrintButton />
         </p>
@@ -246,7 +250,7 @@ export default function HelpPage() {
         <p>No. It records and reminds. You decide when the screen goes off. It also does not filter websites or monitor chat, so see <a href="#content-safe">Keeping content safe</a> for tools that do.</p>
         <h3>Does it work without internet?</h3>
         <p>No. You need a connection to start, stop and see totals.</p>
-        <p className="muted">Still stuck? Contact the person who gave you this app.</p>
+        <p className="muted">Still stuck? Email us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> and tell us what you were doing and what you saw on the screen.</p>
       </section>
 
       <div className="guide-foot no-print">
