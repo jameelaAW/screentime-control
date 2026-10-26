@@ -24,6 +24,7 @@
 - a running timer is auto-stopped after 3 hours of inactivity (forgotten timers guard)
 - caregiver login and per-user data implemented (sprint 3)
 - sprint 1: core engine logs screen sessions (per-screen session records) and powers a today's dashboard inside a nav shell
+- PWA support added: web app manifest, generated icons, and public asset routes are now served by the app
 
 ## Gotchas
 
@@ -43,3 +44,4 @@
 - caregiver workflows were completed and end-to-end verification documented via a fix commit, extending the engine beyond child limits/audited session management.
 - feat: caregivers are now notified when a child reaches the daily screen-time limit, extending the daily allowance/limits feature.
 - merge: Launchpad timer notes were preserved into the repo via a merge commit so they survive alongside the code.
+- icons were generated (not hand-crafted) as part of the PWA setup
