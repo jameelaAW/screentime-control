@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useActionState } from 'react';
 import { activateLicense, type ActivateState } from '@/lib/actions/license';
 import { signOut } from '@/lib/actions/auth';
@@ -15,6 +16,7 @@ export default function ActivateForm({ supportEmail }: { supportEmail: string })
         <button className="button" disabled={pending}>{pending ? 'Checking…' : 'Activate'}</button>
       </form>
       <p className="muted">Lost your key or something is wrong? Email <a href={`mailto:${supportEmail}`}>{supportEmail}</a> with the email you used to buy.</p>
+      <p className="muted">New here? <Link href="/help">Read the user guide</Link> for how sign-up, activation and the timer work.</p>
       <form action={signOut}><button className="link-button">Sign out</button></form>
     </section>
   );
