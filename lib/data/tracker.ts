@@ -1,10 +1,12 @@
 import 'server-only';
 import { createClient } from '@supabase/supabase-js';
+import { MAX_RUN_MINUTES } from '@/lib/session-time';
 export type Child = { id:string; name:string; age:number|null; daily_limit_minutes:number; notes:string|null };
 export type Session = { id:string; child_id:string; started_at:string; ended_at:string|null; duration_minutes:number; device_type:string; activity_type:string; notes:string|null };
 export function database() { return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {auth:{persistSession:false,autoRefreshToken:false}}); }
 export async function readTracker() {
  const db=database();
+ await db.rpc('auto_stop_screen_time',{max_minutes:MAX_RUN_MINUTES}); // close forgotten timers; the dashboard also caps them, so a failure here is safe to ignore
  const c=await db.from('children').select('*').order('name');
  if(c.error) throw Error('Could not load child profiles.');
  const sessions:Session[]=[];
