@@ -24,6 +24,7 @@ const toc: [string, string][] = [
   ['dashboard', 'Reading the dashboard'],
   ['content-safe', 'Keeping content safe'],
   ['privacy', 'Privacy and your data'],
+  ['delete-account', 'Delete your account'],
   ['faq', 'Questions and fixes'],
 ];
 
@@ -228,9 +229,15 @@ export default function HelpPage() {
         <ul>
           <li>Your children and their sessions are <strong>private to your account</strong>. Other users cannot see them.</li>
           <li>Anyone who knows your email and password can see your data, so keep your password to yourself and use <strong>Sign out</strong> on shared devices.</li>
-          <li>Removing a child removes their sessions. Only the change record remains.</li>
+          <li>Removing a child removes their sessions. A record of the change is kept until you delete your account.</li>
           <li>Use a first name or nickname if you prefer. The app does not need a child&apos;s full name or any other detail.</li>
         </ul>
+      </section>
+
+      <section id="delete-account">
+        <h2>Delete your account</h2>
+        <p>You can delete your account yourself at any time. Open <strong>Account</strong> in the menu, enter your password, type <strong>DELETE</strong>, and press <strong>Delete my account and all data</strong>.</p>
+        <p>This <strong>immediately and permanently</strong> deletes your sign-in, every child you added, all their sessions, the history of changes and your licence record. It cannot be undone, so save anything you want to keep first. It does <strong>not</strong> refund your purchase.</p>
       </section>
 
       <section id="faq">
@@ -245,6 +252,8 @@ export default function HelpPage() {
         <p>Copy it again from your Payhip receipt or email and paste it exactly, without extra spaces. Letters can be upper or lower case. If it still fails, the key may have been refunded or disabled. Email us the address you used to buy.</p>
         <h3>It says my licence key has already been used.</h3>
         <p>Each key activates one account. If you already activated it, sign in with that same account. If you did not, email us with your Payhip order details and we will help.</p>
+        <h3>My purchase was refunded and the app stopped working.</h3>
+        <p>That is expected. When a purchase is refunded, we pause the account. Your data is kept, and you can still sign in to open <strong>Account</strong> and delete it. If you have bought again, enter your new licence key on the page that appears.</p>
         <h3>The totals look wrong, or the day changes at the wrong time.</h3>
         <p>The day follows the time zone of your phone or computer. Check that its date, time and time zone are correct, then reload the app.</p>
         <h3>The numbers did not update.</h3>

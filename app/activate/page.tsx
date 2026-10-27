@@ -15,7 +15,7 @@ export default async function ActivatePage() {
   return (
     <main className="auth-page">
       <p className="brand">◷ Screen Time</p>
-      <ActivateForm supportEmail={SUPPORT_EMAIL} />
+      <ActivateForm supportEmail={SUPPORT_EMAIL} revoked={Boolean(status.data.revoked)} />
     </main>
   );
 }

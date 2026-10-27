@@ -48,12 +48,12 @@ export default function PrivacyPage() {
       <h2>How long we keep it</h2>
       <ul>
         <li>Your account, children and sessions stay until you or we delete them. Deleting a child deletes that child&apos;s sessions.</li>
-        <li>The change history is kept for <Fill v={legal.historyRetentionMonths} suffix=" months" /> after an account closes, then deleted.</li>
-        <li>If you ask us to close your account, we delete your account, children, sessions and licence record within <Fill v={legal.deleteWithinDays} suffix=" days" />. Our provider&apos;s backups may hold a copy for up to <Fill v={legal.backupDays} suffix=" days" /> more.</li>
+        <li>The change history is kept while your account exists, and is deleted with it.</li>
+        <li>You can delete your account yourself at any time from the Account page in the app. That deletes your account, children, sessions, change history and licence record straight away. If you would rather ask us, email us and we will do it within <Fill v={legal.deleteWithinDays} suffix=" days" />. Our provider&apos;s backups may hold a copy for up to <Fill v={legal.backupDays} suffix=" days" /> more.</li>
       </ul>
 
       <h2>Your choices and rights</h2>
-      <p>You can ask us to give you a copy of your data, correct it, or delete it, and you can withdraw your consent at any time by closing your account. Email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address on your account. If you are unhappy with our answer you can complain to Singapore&apos;s Personal Data Protection Commission.</p>
+      <p>You can ask us to give you a copy of your data, correct it, or delete it, and you can withdraw your consent at any time by deleting your account from the Account page. Otherwise email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address on your account. If you are unhappy with our answer you can complain to Singapore&apos;s Personal Data Protection Commission.</p>
 
       <h2>How we protect it</h2>
       <p>Data travels over encrypted connections. Each account can see only its own children, sessions and history; this is enforced inside the database, not only on screen. We can access stored data when needed to give support, and we do so only for that. If a breach affects you, we will tell you as the law requires.</p>

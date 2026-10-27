@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useActionState, useState } from 'react';
 import { signIn, signUp, type AuthState } from '@/lib/actions/auth';
 
-export default function AuthForm({ initialError, licenseRequired, legalLinks }: { initialError?: string; licenseRequired?: boolean; legalLinks?: boolean }) {
+export default function AuthForm({ initialError, initialNotice, licenseRequired, legalLinks }: { initialError?: string; initialNotice?: string; licenseRequired?: boolean; legalLinks?: boolean }) {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
-  const [state, action, pending] = useActionState<AuthState, FormData>(mode === 'signin' ? signIn : signUp, initialError ? { error: initialError } : {});
+  const [state, action, pending] = useActionState<AuthState, FormData>(mode === 'signin' ? signIn : signUp, initialError ? { error: initialError } : initialNotice ? { notice: initialNotice } : {});
   return (
     <section className="auth-card">
       <h1>{mode === 'signin' ? 'Welcome back' : 'Create your account'}</h1>

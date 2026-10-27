@@ -26,7 +26,7 @@ export default function TermsPage() {
 
       <p><strong>8. Accuracy.</strong> Totals depend on what you enter and on pressing start and stop. A timer that is not stopped is closed at the daily limit or after 3 hours, so a forgotten timer can record more time than was used. You can correct sessions in the app.</p>
 
-      <p><strong>9. Suspension.</strong> We may suspend or close an account that breaks these terms, after warning you where reasonable. Refunds are covered by our Refund Policy.</p>
+      <p><strong>9. Suspension.</strong> We may suspend or close an account that breaks these terms, after warning you where reasonable. You can delete your account at any time from the Account page. Refunds are covered by our Refund Policy.</p>
 
       <p><strong>10. No warranties.</strong> To the fullest extent the law allows, the service is provided &quot;as is&quot; and we do not promise it will be uninterrupted or error-free.</p>
 

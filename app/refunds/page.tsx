@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fill, LegalShell, Tbc, legalRobots } from '@/components/legal-bits';
+import { Fill, LegalShell, legalRobots } from '@/components/legal-bits';
 import { legal } from '@/lib/legal';
 
 export const metadata: Metadata = { title: 'Refund Policy · Screen Time Control', robots: legalRobots };
@@ -27,7 +27,7 @@ export default function RefundsPage() {
       <h2>What happens next</h2>
       <ul>
         <li><strong>If we agree,</strong> we refund through Payhip to your original payment method. The time it takes to reach you depends on Payhip and your bank or card provider.</li>
-        <li><strong>Your licence key stops working</strong> for new activations once the refund goes through. <Tbc>whether an account that is already activated is closed and its data deleted, or stays active</Tbc></li>
+        <li><strong>Your access stops.</strong> Payhip disables your licence key, and we suspend your account, so the app no longer works for you. We keep your data so you can still sign in to the Account page and delete it yourself, or ask us to delete it. We do not delete it automatically.</li>
         <li>Payhip may have its own buyer terms that also apply to your order.</li>
       </ul>
     </LegalShell>

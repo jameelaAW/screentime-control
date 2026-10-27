@@ -33,6 +33,10 @@ export async function activateLicense(_prev: ActivateState, form: FormData): Pro
     if (verdict === 'error') return { error: 'We could not reach the licence service. Please try again in a moment.' };
     if (verdict === 'invalid') return { error: 'That licence key was not recognised, or it is no longer active. Check it and try again.' };
 
+    // A suspended (refunded) account may activate a new key: clear the old, revoked licence first.
+    const { data: existing } = await admin.from('licenses').select('revoked_at').eq('user_id', user.id).maybeSingle();
+    if (existing?.revoked_at) await admin.from('licenses').delete().eq('user_id', user.id);
+
     const { error } = await admin.from('licenses').insert({ key_hash: hashKey(key), user_id: user.id });
     if (error) {
       if (error.code === '23505') {

@@ -19,7 +19,6 @@ export const legal = {
   replyBusinessDays: null as number | null,      // drafted: 2
   minAccessMonths: null as number | null,        // drafted: 12
   closureNoticeDays: null as number | null,      // drafted: 30
-  historyRetentionMonths: null as number | null, // drafted: 12
   deleteWithinDays: null as number | null,       // drafted: 30
   backupDays: null as number | null,             // drafted: 30
 };
