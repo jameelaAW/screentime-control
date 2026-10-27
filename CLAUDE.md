@@ -13,6 +13,7 @@
 ## Decisions
 
 - a running timer is automatically stopped after 3 hours of inactivity (forgotten timers guard).
+- users can delete their own account and trigger a refund process
 
 ## Architecture
 
@@ -58,3 +59,5 @@
 - a one-page 'Start here' PDF for Payhip buyers was added as documentation (docs commit)
 - Privacy, Terms and Refund pages were added as a draft (committed but not yet confirmed final).
 - The latest commit adds Privacy, Terms and Refund pages in draft status — they have not been formally confirmed/reviewed yet.
+- feat: delete-my-account and the refund process was recently committed
+- refund process was added alongside the delete-my-account feature
