@@ -8,10 +8,13 @@ const REQUIRED = ['VAPID_PUBLIC_KEY', 'VAPID_PRIVATE_KEY', 'SUPABASE_SERVICE_ROL
 export const missingPushConfig = (): string[] => REQUIRED.filter((name) => !process.env[name]);
 export const pushConfigured = () => missingPushConfig().length === 0;
 
+/** A key pasted into Vercel often carries a stray space, line break, quote or trailing '='. Strip those. */
+const tidy = (v: string) => v.replace(/s+/g, '').replace(/^["']+|["']+$/g, '').replace(/=+$/, '');
+
 let ready = false;
 function setup() {
   if (ready) return;
-  webpush.setVapidDetails('mailto:support@mzdigitalbuys.com', process.env.VAPID_PUBLIC_KEY!, process.env.VAPID_PRIVATE_KEY!);
+  webpush.setVapidDetails('mailto:support@mzdigitalbuys.com', tidy(process.env.VAPID_PUBLIC_KEY!), tidy(process.env.VAPID_PRIVATE_KEY!));
   ready = true;
 }
 
