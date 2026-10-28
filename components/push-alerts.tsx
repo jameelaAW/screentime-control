@@ -33,6 +33,7 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
         const reg = await navigator.serviceWorker.getRegistration('/');
         const sub = await reg?.pushManager.getSubscription();
         setStatus(sub && Notification.permission === 'granted' ? 'on' : 'off');
+        setDetail((d) => `${d}; alert handler: ${reg?.active ? 'active' : reg?.installing || reg?.waiting ? 'starting' : 'missing'}; this phone registered: ${sub ? 'yes' : 'no'}`);
       } catch {
         setStatus('off');
       }
