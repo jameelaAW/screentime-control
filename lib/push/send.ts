@@ -15,21 +15,24 @@ function setup() {
   ready = true;
 }
 
-/** Sends one alert to every phone a caregiver has switched on. Returns how many reached the push service. */
-export async function sendToUser(userId: string, payload: { title: string; body: string; tag: string }): Promise<number> {
+/** Sends one alert to every phone a caregiver has switched on. `sent` is how many the push service accepted; `statuses` says what it answered for each (no secrets). */
+export async function sendToUser(userId: string, payload: { title: string; body: string; tag: string }): Promise<{ sent: number; statuses: string[] }> {
   setup();
   const db = adminClient();
   const { data: subs } = await db.from('push_subscriptions').select('id,endpoint,p256dh,auth').eq('user_id', userId);
   let sent = 0;
+  const statuses: string[] = [];
   for (const s of subs ?? []) {
     try {
       await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, JSON.stringify(payload), { TTL: 600, urgency: 'high' });
       sent++;
+      statuses.push('accepted');
     } catch (e) {
       const status = (e as { statusCode?: number }).statusCode;
+      statuses.push(`${status ?? 'error'} ${String((e as { body?: string }).body ?? (e as Error).message ?? '').slice(0, 80)}`);
       if (status === 404 || status === 410) await db.from('push_subscriptions').delete().eq('id', s.id); // the phone removed the app or turned alerts off
       else console.error('Push send failed with status', status);
     }
   }
-  return sent;
+  return { sent, statuses };
 }

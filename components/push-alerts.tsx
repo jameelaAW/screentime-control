@@ -81,7 +81,7 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
   const test = async () => {
     setBusy(true); setError(''); setMessage('');
     const result = await sendTestAlert();
-    if (result.error) setError(result.error); else setMessage('Test alert sent. It should arrive in a few seconds.');
+    if (result.error) setError(result.error); else setMessage(`Test alert sent. It should arrive in a few seconds. ${result.detail ?? ''}`);
     setBusy(false);
   };
 

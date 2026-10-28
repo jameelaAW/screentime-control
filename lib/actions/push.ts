@@ -2,7 +2,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { pushConfigured, sendToUser } from '@/lib/push/send';
 
-export type PushResult = { error?: string; ok?: boolean };
+export type PushResult = { error?: string; ok?: boolean; detail?: string };
 type Sub = { endpoint: string; keys: { p256dh: string; auth: string } };
 
 const valid = (s: unknown): s is Sub => {
@@ -29,6 +29,7 @@ export async function sendTestAlert(): Promise<PushResult> {
   if (!pushConfigured()) return { error: 'Phone alerts are not available yet.' };
   const { data: { user } } = await (await createClient()).auth.getUser();
   if (!user) return { error: 'Please sign in again.' };
-  const sent = await sendToUser(user.id, { title: 'Alerts are on', body: 'You will get a message like this when a child is nearly at the limit.', tag: 'test' });
-  return sent ? { ok: true } : { error: 'No alert could be delivered. Turn alerts off and on again on this phone.' };
+  const { sent, statuses } = await sendToUser(user.id, { title: 'Alerts are on', body: 'You will get a message like this when a child is nearly at the limit.', tag: 'test' });
+  const detail = statuses.length ? ` (${statuses.join('; ')})` : ' (no phone is registered for this account)';
+  return sent ? { ok: true, detail: `${sent} of ${statuses.length} phone entries accepted by the push service${detail}` } : { error: `No alert could be delivered${detail}. Turn alerts off and on again on this phone.` };
 }

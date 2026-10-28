@@ -25,6 +25,6 @@ export async function POST(request: NextRequest) {
   const { data, error } = await adminClient().rpc('push_sweep', { max_minutes: MAX_RUN_MINUTES, warn_minutes: WARN_BEFORE_LIMIT_MINUTES, remind_every: REMIND_EVERY_MINUTES });
   if (error) { console.error('push_sweep failed', error.message); return NextResponse.json({ error: 'Sweep failed' }, { status: 500 }); }
   let delivered = 0;
-  for (const row of (data ?? []) as (Alert & { user_id: string })[]) delivered += await sendToUser(row.user_id, alertPayload(row));
+  for (const row of (data ?? []) as (Alert & { user_id: string })[]) delivered += (await sendToUser(row.user_id, alertPayload(row))).sent;
   return NextResponse.json({ alerts: (data ?? []).length, delivered });
 }
