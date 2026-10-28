@@ -13,8 +13,8 @@ const read = (): Record<string, number> => {
 
 /**
  * In-app reminders while a timer runs: a "still on screen?" check every REMIND_EVERY_MINUTES and a
- * heads-up shortly before the daily limit. They only show while this page is open; a web page cannot
- * send phone notifications by itself.
+ * heads-up shortly before the daily limit. They only show while this page is open. Messages to a locked or closed phone are phone alerts
+ * (see components/push-alerts.tsx and app/api/push/sweep).
  */
 export default function Reminders({ running, now }: { running: Running[]; now: number }) {
   const router = useRouter();

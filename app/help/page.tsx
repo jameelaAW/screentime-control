@@ -19,6 +19,7 @@ const toc: [string, string][] = [
   ['timer', 'Track screen time with the timer'],
   ['limit', 'What happens at the daily limit'],
   ['reminders', 'Reminders'],
+  ['phone-alerts', 'Phone alerts (when the app is closed)'],
   ['manual', 'Log a session after the fact'],
   ['history', 'Session history: edit and delete'],
   ['dashboard', 'Reading the dashboard'],
@@ -135,7 +136,7 @@ export default function HelpPage() {
           <li><strong>3-hour safety stop.</strong> A timer that is left running is closed after 3 hours and recorded as exactly 3 hours, even if the child stopped long before.</li>
           <li>The day starts again at <strong>midnight in your time zone</strong>.</li>
         </ul>
-        <p className="muted">The stop happens while the dashboard is open or the next time it loads. Either way, the recorded time never goes past the limit.</p>
+        <p className="muted">The timer is stopped by our server within about a minute of reaching the limit, even if nobody has the app open (once phone alerts are on for your account). Otherwise the stop happens the next time the dashboard opens. Either way, the recorded time never goes past the limit.</p>
       </section>
 
       <section id="reminders">
@@ -145,7 +146,31 @@ export default function HelpPage() {
           <li><strong>&ldquo;Almost at the daily limit&rdquo;</strong> appears when 5 minutes or less remain, so you can wrap up before the timer stops.</li>
           <li>The browser tab title also shows a ⏰ while a reminder is waiting.</li>
         </ul>
-        <p className="guide-note"><strong>Reminders only show while the app is open</strong> on your phone or computer. The app cannot send notifications when it is closed, so keep it open while a timer runs.</p>
+        <p className="guide-note"><strong>These on-screen reminders only show while the app is open.</strong> To get a message on your phone even when the app is closed, turn on phone alerts (next section).</p>
+      </section>
+
+      <section id="phone-alerts">
+        <h2>Phone alerts (when the app is closed)</h2>
+        <p>Phone alerts are messages that appear on your lock screen, like a text message. You get one:</p>
+        <ul>
+          <li>about <strong>5 minutes before</strong> a child reaches the daily limit,</li>
+          <li>when the timer is <strong>stopped at the limit</strong> (or after the 3-hour safety stop),</li>
+          <li>every <strong>30 minutes</strong> while a timer keeps running: &ldquo;Still on screen?&rdquo;</li>
+        </ul>
+        <h3>Turn them on</h3>
+        <ol>
+          <li>On the phone you want alerts on, open the app and go to <strong>Account</strong> in the menu.</li>
+          <li>Under <strong>Phone alerts</strong> press <strong>Turn on alerts on this phone</strong> and choose <strong>Allow</strong> when your phone asks.</li>
+          <li>Press <strong>Send a test alert</strong>. A message should arrive within a few seconds.</li>
+        </ol>
+        <ul>
+          <li><strong>Each phone is switched on separately.</strong> If both parents want alerts, each turns them on from their own phone.</li>
+          <li><strong>iPhone and iPad:</strong> first add the app to your Home Screen (Safari, Share, Add to Home Screen) and open it from that icon. Alerts do not work from a normal Safari tab. This needs iOS 16.4 or newer.</li>
+          <li><strong>Android:</strong> use Chrome or Edge. Alerts also work from a normal browser tab, but installing the app is more reliable.</li>
+          <li>The message shows the child&apos;s first name, so anyone who can see your lock screen can see it. You can hide notification previews in your phone&apos;s settings.</li>
+          <li>To stop alerts, press <strong>Turn off on this phone</strong> on the same page.</li>
+        </ul>
+        <p className="guide-note"><strong>Good to know.</strong> Alerts depend on your phone&apos;s notification settings. If Do Not Disturb, a battery saver or a blocked app is on, the message may be late or missing. The daily limit is still enforced either way: the timer is stopped on our server, so the recorded time never goes past the limit.</p>
       </section>
 
       <section id="manual">

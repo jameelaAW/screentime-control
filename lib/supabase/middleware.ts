@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // Pages anyone may open without signing in. API routes enforce their own rules.
 const isPublic = (path: string) =>
-  path === "/login" || path === "/forgot-password" || path === "/help" || path === "/privacy" || path === "/terms" || path === "/refunds" || path === "/manifest.webmanifest" || path.startsWith("/pwa-icon/") || path.startsWith("/auth/") || path.startsWith("/api/");
+  path === "/login" || path === "/forgot-password" || path === "/help" || path === "/privacy" || path === "/terms" || path === "/refunds" || path === "/manifest.webmanifest" || path === "/sw.js" || path.startsWith("/pwa-icon/") || path.startsWith("/auth/") || path.startsWith("/api/");
 
 function redirectTo(request: NextRequest, path: string, from?: NextResponse) {
   const target = request.nextUrl.clone();

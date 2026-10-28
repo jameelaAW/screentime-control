@@ -20,6 +20,7 @@ export default function PrivacyPage() {
           <tr><td>Screen-time records you enter: start and end time, length, device type, activity type, notes</td><td>To work out daily totals and show history.</td></tr>
           <tr><td>A change history: each add, edit and delete, with the old and new values, your reason, and the time</td><td>To keep records accurate and traceable.</td></tr>
           <tr><td>A scrambled (hashed) copy of your Payhip licence key, the date you activated it, and the times of activation attempts</td><td>To make sure one key activates one account, and to stop key guessing.</td></tr>
+          <tr><td>If you turn on phone alerts: a code your phone&apos;s browser gives us to reach it (the push address and keys), and your time zone</td><td>To send alerts to that phone. You can turn them off at any time; deleting your account removes them.</td></tr>
           <tr><td>Your time zone, sign-in cookies, and a small note in your browser remembering which reminders you dismissed</td><td>To show the right day, keep you signed in, and avoid repeating reminders.</td></tr>
           <tr><td>Standard server records such as IP address and browser type</td><td>Kept by our hosting and database providers for security and fault-finding.</td></tr>
           <tr><td>Messages you send to support</td><td>To answer you.</td></tr>
@@ -37,6 +38,7 @@ export default function PrivacyPage() {
         <tbody>
           <tr><td>Supabase</td><td>Database and sign-in</td><td>Singapore</td></tr>
           <tr><td>Vercel</td><td>Hosts the website</td><td>Servers in several countries</td></tr>
+          <tr><td>Your phone&apos;s push service (Google, Apple or Mozilla, depending on your phone)</td><td>Delivers phone alerts. It sees the alert text, which includes a child&apos;s first name</td><td>Global</td></tr>
           <tr><td>Resend</td><td>Sends account emails (confirm sign-up, reset password)</td><td>Tokyo</td></tr>
           <tr><td>Cloudflare</td><td>Our domain and support-email forwarding</td><td>Global</td></tr>
           <tr><td>Microsoft Outlook</td><td>Our support inbox</td><td>Global</td></tr>

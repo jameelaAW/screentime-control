@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import DeleteAccountForm from '@/components/delete-account-form';
+import PushAlerts from '@/components/push-alerts';
+import { pushConfigured } from '@/lib/push/send';
 import { createClient } from '@/lib/supabase/server';
 
 export const metadata: Metadata = { title: 'Account · Screen Time Control' };
@@ -20,6 +22,13 @@ export default async function AccountPage() {
       <h1>Your account</h1>
       <p className="muted">Signed in as <strong>{user.email}</strong></p>
       <p className="no-print"><Link href="/">← Back to the dashboard</Link> · <Link href="/help">User guide</Link></p>
+
+      <section id="alerts">
+        <h2>Phone alerts</h2>
+        <p>Get a message on your phone, even when the app is closed, when a child is about 5 minutes from the daily limit, when the timer is stopped at the limit, and if a timer keeps running for a long time.</p>
+        <p className="muted">Each phone is switched on separately, so both parents can turn it on. The message shows the child&apos;s first name on the lock screen.</p>
+        <PushAlerts publicKey={process.env.VAPID_PUBLIC_KEY ?? ''} available={pushConfigured()} />
+      </section>
 
       <section className="danger-zone">
         <h2>Delete my account</h2>
