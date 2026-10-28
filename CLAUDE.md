@@ -61,3 +61,4 @@
 - The latest commit adds Privacy, Terms and Refund pages in draft status — they have not been formally confirmed/reviewed yet.
 - feat: delete-my-account and the refund process was recently committed
 - refund process was added alongside the delete-my-account feature
+- phone alerts (push notifications) for the daily screen-time limit have been added (feat commit)
