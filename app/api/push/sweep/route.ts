@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { adminClient } from '@/lib/license';
 import { MAX_RUN_MINUTES, REMIND_EVERY_MINUTES, WARN_BEFORE_LIMIT_MINUTES } from '@/lib/session-time';
 import { alertPayload, type Alert } from '@/lib/push/messages';
-import { pushConfigured, sendToUser } from '@/lib/push/send';
+import { missingPushConfig, sendToUser } from '@/lib/push/send';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
@@ -20,7 +20,8 @@ function authorised(request: NextRequest) {
 // and sends each alert once.
 export async function POST(request: NextRequest) {
   if (!authorised(request)) return NextResponse.json({ error: 'Not allowed' }, { status: 401 });
-  if (!pushConfigured()) return NextResponse.json({ error: 'Phone alerts are not configured' }, { status: 503 });
+  const missing = missingPushConfig();
+  if (missing.length) return NextResponse.json({ error: 'Phone alerts are not configured', missing }, { status: 503 }); // only reachable with the scheduler secret
   const { data, error } = await adminClient().rpc('push_sweep', { max_minutes: MAX_RUN_MINUTES, warn_minutes: WARN_BEFORE_LIMIT_MINUTES, remind_every: REMIND_EVERY_MINUTES });
   if (error) { console.error('push_sweep failed', error.message); return NextResponse.json({ error: 'Sweep failed' }, { status: 500 }); }
   let delivered = 0;

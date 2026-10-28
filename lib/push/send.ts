@@ -2,9 +2,11 @@ import 'server-only';
 import webpush from 'web-push';
 import { adminClient } from '@/lib/license';
 
-/** Phone alerts need the VAPID key pair, the scheduler secret and the server-only Supabase key. */
-export const pushConfigured = () =>
-  Boolean(process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL);
+const REQUIRED = ['VAPID_PUBLIC_KEY', 'VAPID_PRIVATE_KEY', 'SUPABASE_SERVICE_ROLE_KEY', 'NEXT_PUBLIC_SUPABASE_URL', 'CRON_SECRET'] as const;
+
+/** Names (never values) of the settings phone alerts still need: the VAPID key pair, the scheduler secret and the server-only Supabase key. */
+export const missingPushConfig = (): string[] => REQUIRED.filter((name) => !process.env[name]);
+export const pushConfigured = () => missingPushConfig().length === 0;
 
 let ready = false;
 function setup() {
