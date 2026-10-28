@@ -27,7 +27,7 @@ export async function sendToUser(userId: string, payload: { title: string; body:
   const statuses: string[] = [];
   for (const s of subs ?? []) {
     try {
-      await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, JSON.stringify(payload), { TTL: 600, urgency: 'high' });
+      await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, JSON.stringify(payload), { TTL: 600 });
       sent++;
       statuses.push('accepted');
     } catch (e) {

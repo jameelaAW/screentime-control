@@ -91,6 +91,17 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
     }
   };
 
+  const local = async () => {
+    setError(''); setMessage('');
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      await reg.showNotification('Local test', { body: 'If you can see this, notifications can be shown on this phone.' });
+      setMessage('Local test sent. This one does not use the internet. Lock the phone now, or look at the top of the screen.');
+    } catch (e) {
+      setError(`This phone refused to show a notification: ${e instanceof Error ? e.message.slice(0, 120) : 'unknown error'}`);
+    }
+  };
+
   if (!available) return <p className="muted">Phone alerts are not switched on for this app yet.</p>;
   return (
     <div className="push-alerts">
@@ -102,6 +113,7 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
       {status === 'on' && (
         <div className="row-actions">
           <button type="button" className="button" disabled={busy} onClick={test}>Send a test alert</button>
+          <button type="button" disabled={busy} onClick={local}>Show a local test on this phone</button>
           <button type="button" disabled={busy} onClick={turnOff}>Turn off on this phone</button>
         </div>
       )}
