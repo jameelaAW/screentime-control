@@ -168,9 +168,10 @@ export default function HelpPage() {
           <li><strong>iPhone and iPad:</strong> first add the app to your Home Screen (Safari, Share, Add to Home Screen) and open it from that icon. Alerts do not work from a normal Safari tab. This needs iOS 16.4 or newer.</li>
           <li><strong>Android:</strong> use Chrome or Edge. Alerts also work from a normal browser tab, but installing the app is more reliable.</li>
           <li>The message shows the child&apos;s first name, so anyone who can see your lock screen can see it. You can hide notification previews in your phone&apos;s settings.</li>
+          <li><strong>No alert arrived?</strong> On iPhone, a Focus mode silences every app you have not allowed. Swipe down from the top-right corner and check whether a Focus is on. Turn it off, or open it (⋯, then Settings, then Apps) and add Screen Time to the allowed apps. Also check Settings, Notifications, Scheduled Summary, which can hold alerts until later.</li>
           <li>To stop alerts, press <strong>Turn off on this phone</strong> on the same page.</li>
         </ul>
-        <p className="guide-note"><strong>Good to know.</strong> Alerts depend on your phone&apos;s notification settings. If Do Not Disturb, a battery saver or a blocked app is on, the message may be late or missing. The daily limit is still enforced either way: the timer is stopped on our server, so the recorded time never goes past the limit.</p>
+        <p className="guide-note"><strong>Good to know.</strong> Alerts depend on your phone&apos;s notification settings. If Do Not Disturb, a <strong>Focus</strong> mode (such as Personal, Work or Sleep), a battery saver or a blocked app is on, the message may be late or missing. The daily limit is still enforced either way: the timer is stopped on our server, so the recorded time never goes past the limit.</p>
       </section>
 
       <section id="manual">
