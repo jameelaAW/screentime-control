@@ -34,6 +34,7 @@
 - timers that were accidentally left running are auto-stopped at the 3-hour mark to prevent unbounded session records.
 - the first supabase migration was not executable and was fixed via commit 'fix: make initial supabase migration executable'
 - launchpad verification notes and timer notes were preserved into the repo via merge commits so they survive alongside code
+- VAPID key pasting tolerates stray spaces, quotes, or '=' characters (fixed via a fix commit) so pasted keys don't break the web push setup.
 
 ## Notes
 
