@@ -1,20 +1,22 @@
 // Screen Time Control service worker: receives phone alerts and opens the app when one is tapped.
 // It caches nothing, so the app always shows live data.
+// Kept deliberately plain: iPhone is strict about notification options, and every push must show something.
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
 self.addEventListener('push', (event) => {
   let data = {};
-  try { data = event.data ? event.data.json() : {}; } catch (e) { data = {}; }
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (e) {
+    try { data = { body: event.data.text() }; } catch (e2) { data = {}; }
+  }
   const title = typeof data.title === 'string' && data.title ? data.title : 'Screen Time Control';
-  event.waitUntil(self.registration.showNotification(title, {
-    body: typeof data.body === 'string' ? data.body : '',
-    icon: '/pwa-icon/192',
-    badge: '/pwa-icon/192',
-    tag: typeof data.tag === 'string' ? data.tag : undefined,
-    renotify: Boolean(data.tag),
-    data: { url: '/' },
-  }));
+  const options = { body: typeof data.body === 'string' ? data.body : '', icon: '/pwa-icon/192' };
+  if (typeof data.tag === 'string' && data.tag) options.tag = data.tag;
+  event.waitUntil(
+    self.registration.showNotification(title, options).catch(() => self.registration.showNotification('Screen Time Control'))
+  );
 });
 
 self.addEventListener('notificationclick', (event) => {
@@ -24,7 +26,6 @@ self.addEventListener('notificationclick', (event) => {
     for (const client of all) {
       if ('focus' in client) {
         await client.focus();
-        if ('navigate' in client) { try { await client.navigate('/'); } catch (e) { /* stay on the current page */ } }
         return;
       }
     }
