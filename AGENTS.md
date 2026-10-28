@@ -15,6 +15,7 @@
 - a running timer is automatically stopped after 3 hours of inactivity (forgotten timers guard).
 - users can delete their own account and trigger a refund process
 - test coverage was added for alert delivery verifying what the push service answered (feat commit).
+- test notifications use local delivery (not push infrastructure) so that failed deliveries can be attributed to code/logic bugs rather than phone notification settings
 
 ## Architecture
 
@@ -36,6 +37,7 @@
 - launchpad verification notes and timer notes were preserved into the repo via merge commits so they survive alongside code
 - VAPID key pasting tolerates stray spaces, quotes, or '=' characters (fixed via a fix commit) so pasted keys don't break the web push setup.
 - key tidy pattern must strip whitespace, not the letter s — a fix commit corrected this
+- local test notifications (via local delivery mechanism) were added to distinguish delivery problems from child's phone notification settings, avoiding false negatives during testing
 
 ## Notes
 
