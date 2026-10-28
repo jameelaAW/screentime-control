@@ -29,7 +29,12 @@ export async function sendTestAlert(): Promise<PushResult> {
   if (!pushConfigured()) return { error: 'Phone alerts are not available yet.' };
   const { data: { user } } = await (await createClient()).auth.getUser();
   if (!user) return { error: 'Please sign in again.' };
-  const { sent, statuses } = await sendToUser(user.id, { title: 'Alerts are on', body: 'You will get a message like this when a child is nearly at the limit.', tag: 'test' });
-  const detail = statuses.length ? ` (${statuses.join('; ')})` : ' (no phone is registered for this account)';
-  return sent ? { ok: true, detail: `${sent} of ${statuses.length} phone entries accepted by the push service${detail}` } : { error: `No alert could be delivered${detail}. Turn alerts off and on again on this phone.` };
+  try {
+    const { sent, statuses } = await sendToUser(user.id, { title: 'Alerts are on', body: 'You will get a message like this when a child is nearly at the limit.', tag: 'test' });
+    const detail = statuses.length ? ` (${statuses.join('; ')})` : ' (no phone is registered for this account)';
+    return sent ? { ok: true, detail: `${sent} of ${statuses.length} phone entries accepted by the push service${detail}` } : { error: `No alert could be delivered${detail}. Turn alerts off and on again on this phone.` };
+  } catch (e) {
+    console.error('Test alert failed', e instanceof Error ? e.message : e);
+    return { error: `The server could not send the alert: ${e instanceof Error ? e.message.slice(0, 140) : 'unknown error'}` }; // setup problem (for example a wrong key): the text names the cause, never a key
+  }
 }

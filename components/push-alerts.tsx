@@ -80,9 +80,14 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
 
   const test = async () => {
     setBusy(true); setError(''); setMessage('');
-    const result = await sendTestAlert();
-    if (result.error) setError(result.error); else setMessage(`Test alert sent. It should arrive in a few seconds. ${result.detail ?? ''}`);
-    setBusy(false);
+    try {
+      const result = await sendTestAlert();
+      if (result.error) setError(result.error); else setMessage(`Test alert sent. It should arrive in a few seconds. ${result.detail ?? ''}`);
+    } catch {
+      setError('The app could not reach the server. Check your connection and try again.');
+    } finally {
+      setBusy(false);
+    }
   };
 
   if (!available) return <p className="muted">Phone alerts are not switched on for this app yet.</p>;
