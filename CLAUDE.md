@@ -68,3 +68,4 @@
 - a fix was committed that names the missing settings when phone alerts are not configured, providing clearer error/informational messages for caregivers who have not set up phone alert settings
 - test alert always shows a result, including server errors (fix commit)
 - phone check now also reports the alert handler state (recent commit)
+- plainer service worker notification for iPhone was recently fixed
