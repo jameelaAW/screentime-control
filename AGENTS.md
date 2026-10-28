@@ -35,6 +35,7 @@
 - the first supabase migration was not executable and was fixed via commit 'fix: make initial supabase migration executable'
 - launchpad verification notes and timer notes were preserved into the repo via merge commits so they survive alongside code
 - VAPID key pasting tolerates stray spaces, quotes, or '=' characters (fixed via a fix commit) so pasted keys don't break the web push setup.
+- key tidy pattern must strip whitespace, not the letter s — a fix commit corrected this
 
 ## Notes
 
