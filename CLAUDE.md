@@ -14,6 +14,7 @@
 
 - a running timer is automatically stopped after 3 hours of inactivity (forgotten timers guard).
 - users can delete their own account and trigger a refund process
+- test coverage was added for alert delivery verifying what the push service answered (feat commit).
 
 ## Architecture
 
