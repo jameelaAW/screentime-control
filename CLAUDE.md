@@ -62,3 +62,4 @@
 - feat: delete-my-account and the refund process was recently committed
 - refund process was added alongside the delete-my-account feature
 - phone alerts (push notifications) for the daily screen-time limit have been added (feat commit)
+- a fix was committed that names the missing settings when phone alerts are not configured, providing clearer error/informational messages for caregivers who have not set up phone alert settings
