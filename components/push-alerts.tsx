@@ -16,11 +16,13 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [detail, setDetail] = useState('');
 
   useEffect(() => {
     (async () => {
       const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       const installed = window.matchMedia('(display-mode: standalone)').matches || (navigator as unknown as { standalone?: boolean }).standalone === true;
+      setDetail(`${ios ? 'iPhone/iPad' : 'other device'}; opened as installed app: ${installed ? 'yes' : 'no'}; alerts supported by this browser: ${'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window ? 'yes' : 'no'}; permission: ${'Notification' in window ? Notification.permission : 'n/a'}`);
       if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
         setStatus(ios && !installed ? 'needs-install' : 'unsupported');
         return;
@@ -97,6 +99,7 @@ export default function PushAlerts({ publicKey, available }: { publicKey: string
           <button type="button" disabled={busy} onClick={turnOff}>Turn off on this phone</button>
         </div>
       )}
+      {detail && <p className="muted" style={{ fontSize: 12 }}>Phone check: {detail}</p>}
       {message && <p role="status">{message}</p>}
       {error && <p className="error" role="alert">{error}</p>}
     </div>
