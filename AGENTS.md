@@ -72,3 +72,4 @@
 - phone check now also reports the alert handler state (recent commit)
 - plainer service worker notification for iPhone was recently fixed
 - the in-app user guide (/help) and printable PDF now includes a section explaining that Focus modes can silence phone alerts
+- feat: download my data as CSV from the Account page was recently committed
