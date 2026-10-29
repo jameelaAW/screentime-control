@@ -25,6 +25,7 @@ const toc: [string, string][] = [
   ['dashboard', 'Reading the dashboard'],
   ['content-safe', 'Keeping content safe'],
   ['privacy', 'Privacy and your data'],
+  ['export', 'Download your data'],
   ['delete-account', 'Delete your account'],
   ['faq', 'Questions and fixes'],
 ];
@@ -258,6 +259,17 @@ export default function HelpPage() {
           <li>Removing a child removes their sessions. A record of the change is kept until you delete your account.</li>
           <li>Use a first name or nickname if you prefer. The app does not need a child&apos;s full name or any other detail.</li>
         </ul>
+      </section>
+
+      <section id="export">
+        <h2>Download your data</h2>
+        <p>You can save a copy of everything you have recorded.</p>
+        <ol>
+          <li>Open <strong>Account</strong> from the menu.</li>
+          <li>Under <strong>Download my data</strong>, press <strong>Download my data (CSV)</strong>.</li>
+          <li>Open the file in Excel, Numbers or Google Sheets. On an iPhone it opens in a preview: tap <strong>Share</strong>, then <strong>Save to Files</strong>.</li>
+        </ol>
+        <p>The file has one row per session, with the child&apos;s name and daily limit, the date, start and end time in your time zone, the minutes, device, activity and notes. Children with no sessions yet are listed too. The file contains your children&apos;s names, so keep it somewhere private.</p>
       </section>
 
       <section id="delete-account">

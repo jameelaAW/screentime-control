@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       </ul>
 
       <h2>Your choices and rights</h2>
-      <p>You can ask us to give you a copy of your data, correct it, or delete it, and you can withdraw your consent at any time by deleting your account from the Account page. Otherwise email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address on your account. If you are unhappy with our answer you can complain to Singapore&apos;s Personal Data Protection Commission.</p>
+      <p>You can download a copy of your children and sessions yourself at any time from the Account page. You can also ask us to give you a copy of your data, correct it, or delete it, and you can withdraw your consent at any time by deleting your account from the Account page. Otherwise email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address on your account. If you are unhappy with our answer you can complain to Singapore&apos;s Personal Data Protection Commission.</p>
 
       <h2>How we protect it</h2>
       <p>Data travels over encrypted connections. Each account can see only its own children, sessions and history; this is enforced inside the database, not only on screen. We can access stored data when needed to give support, and we do so only for that. If a breach affects you, we will tell you as the law requires.</p>
