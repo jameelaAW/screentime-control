@@ -38,14 +38,14 @@ export default async function AccountPage() {
           <p>Your access is paused, so the download is not available here. Email <a href="mailto:support@mzdigitalbuys.com">support@mzdigitalbuys.com</a> and we will send you a copy of your data.</p>
         ) : (
           <>
-            <p>Save a copy of your children and all their screen-time sessions as a CSV file. It opens in Excel, Numbers and Google Sheets.</p>
+            <p>Keep a copy of your children and all their screen-time sessions. Choose the format that suits you.</p>
             <ul>
-              <li>One row per session: child, date, start and end time (in your time zone), minutes, device, activity and notes.</li>
-              <li>Children with no sessions yet are included.</li>
-              <li>It is a snapshot of today. Download again any time for a fresh copy.</li>
+              <li><strong>Readable report:</strong> a clean page with each child&apos;s day-by-day totals against the limit and every session. Best on a phone. You can print it or save it as a PDF.</li>
+              <li><strong>Spreadsheet (CSV):</strong> one row per session, for Excel, Numbers or Google Sheets. Best if you want to sort or chart the data.</li>
+              <li>Times are in your time zone, and children with no sessions yet are included. Download again any time for a fresh copy.</li>
             </ul>
-            <p className="no-print"><a className="button" href="/account/export" download>Download my data (CSV)</a></p>
-            <p className="muted">The file contains your children&apos;s names, so keep it somewhere private. On an iPhone it opens in a preview: tap Share, then Save to Files.</p>
+            <p className="guide-actions no-print"><Link className="button" href="/account/report">View readable report</Link> <a className="button" href="/account/export" download>Download spreadsheet (CSV)</a></p>
+            <p className="muted">These files contain your children&apos;s names, so keep them somewhere private.</p>
           </>
         )}
       </section>

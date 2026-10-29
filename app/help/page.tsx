@@ -263,13 +263,13 @@ export default function HelpPage() {
 
       <section id="export">
         <h2>Download your data</h2>
-        <p>You can save a copy of everything you have recorded.</p>
+        <p>You can keep a copy of everything you have recorded, in two formats.</p>
         <ol>
-          <li>Open <strong>Account</strong> from the menu.</li>
-          <li>Under <strong>Download my data</strong>, press <strong>Download my data (CSV)</strong>.</li>
-          <li>Open the file in Excel, Numbers or Google Sheets. On an iPhone it opens in a preview: tap <strong>Share</strong>, then <strong>Save to Files</strong>.</li>
+          <li>Open <strong>Account</strong> from the menu and find <strong>Download my data</strong>.</li>
+          <li>Press <strong>View readable report</strong> for a clean page with each child&apos;s day-by-day totals against the limit and every session. On an iPhone, tap Share, then Print, pinch the preview outward, tap Share again and choose Save to Files to keep it as a PDF. On a computer, use <strong>Print / save as PDF</strong>.</li>
+          <li>Or press <strong>Download spreadsheet (CSV)</strong> for one row per session. Open it in Excel, Numbers or Google Sheets rather than a notes app.</li>
         </ol>
-        <p>The file has one row per session, with the child&apos;s name and daily limit, the date, start and end time in your time zone, the minutes, device, activity and notes. Children with no sessions yet are listed too. The file contains your children&apos;s names, so keep it somewhere private.</p>
+        <p>Times are in your time zone, and children with no sessions yet are listed too. The files contain your children&apos;s names, so keep them somewhere private.</p>
       </section>
 
       <section id="delete-account">
