@@ -9,7 +9,7 @@ export default function RefundsPage() {
     <LegalShell title="Refund Policy">
       <p className="muted">Effective date: <Fill v={legal.effectiveDate} /></p>
       <p>You can get a refund within <Fill v={legal.refundDays} suffix=" days" /> of buying if you cannot use Screen Time Control because of a fault we cannot fix.</p>
-      <p><strong>What you are buying.</strong> A one-time digital licence for Screen Time Control (SGD 6), sold through Payhip. You get access as soon as you buy, so we cannot take it back once it has been delivered, except as set out here.</p>
+      <p><strong>What you are buying.</strong> A one-time digital licence for Screen Time Control (SGD 5), sold through Payhip. You get access as soon as you buy, so we cannot take it back once it has been delivered, except as set out here.</p>
 
       <h2>When we refund</h2>
       <ul>
