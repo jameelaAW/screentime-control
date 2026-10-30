@@ -76,3 +76,4 @@
 - a 'Download my data' feature now exists and was made more readable via a commit producing a cleaner CSV export
 - the refund page displays the price as SGD 5 (docs commit)
 - The repo has a docs/ folder with a Terms line for early accounts, a launch checklist, and a Payhip listing reference.
+- docs: fix test order in launch checklist — a recent docs commit updated the launch checklist to reflect correct test ordering.
