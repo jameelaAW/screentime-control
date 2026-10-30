@@ -14,7 +14,7 @@ export default function TermsPage() {
 
       <p><strong>2. What the service is, and is not.</strong> Screen Time Control is a tool for adults to record and track children&apos;s screen time against a daily limit. It stores the times you enter. It <strong>does not</strong> block or lock devices, filter websites or apps, or monitor what a child watches, plays or types. It is not a child-safety, supervision or monitoring service, and you remain responsible for supervising the children in your care.</p>
 
-      <p><strong>3. Your licence.</strong> Your purchase gives you a licence to use the service. <strong>One licence key activates one account.</strong> You may use it for the children in your own household or in the childcare setting you run. You may not share your key or account with others outside that group, or sell, rent or give away your key or access.</p>
+      <p><strong>3. Your licence.</strong> Your purchase gives you a licence to use the service. <strong>One licence key activates one account.</strong> You may use it for the children in your own household or in the childcare setting you run. You may not share your key or account with others outside that group, or sell, rent or give away your key or access. If you created your account before paid licences began, you keep access to that account without buying a key. That access is for that account only, it is on the same terms as a paid licence, and it is not refundable because nothing was paid.</p>
 
       <p><strong>4. Your account.</strong> Give accurate details, keep your password private, and tell us if you think someone else has used your account. You are responsible for what happens under your account. You must be an adult.</p>
 
