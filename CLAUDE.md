@@ -74,3 +74,4 @@
 - the in-app user guide (/help) and printable PDF now includes a section explaining that Focus modes can silence phone alerts
 - feat: download my data as CSV from the Account page was recently committed
 - a 'Download my data' feature now exists and was made more readable via a commit producing a cleaner CSV export
+- the refund page displays the price as SGD 5 (docs commit)
