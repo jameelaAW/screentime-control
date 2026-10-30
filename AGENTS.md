@@ -75,3 +75,4 @@
 - feat: download my data as CSV from the Account page was recently committed
 - a 'Download my data' feature now exists and was made more readable via a commit producing a cleaner CSV export
 - the refund page displays the price as SGD 5 (docs commit)
+- The repo has a docs/ folder with a Terms line for early accounts, a launch checklist, and a Payhip listing reference.
