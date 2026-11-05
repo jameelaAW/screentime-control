@@ -29,9 +29,12 @@ Screen Time Control is a simple web app for parents and carers. Add your childre
 - Delete your account and data yourself at any time
 
 **How it works**
-1. Buy, and you receive your licence key straight away.
-2. Open the app link, create your account and enter the key.
-3. Add your children and start timing.
+1. **Pay first.** Buy on Payhip. Your licence key arrives straight away, on the receipt and by email.
+2. **Create your account.** Open the app link and sign up with the email you want to keep. Confirm it from the email we send.
+3. **Activate.** Sign in and paste your licence key when asked. You only do this once. One key works for one account.
+4. **Start.** Add your children, set their daily limits and start timing.
+
+Tip: keep your Payhip receipt. If you ever lose the key, it is there.
 
 It works in any modern browser on a phone, tablet or computer. You can add it to your Home Screen so it opens like an app.
 
