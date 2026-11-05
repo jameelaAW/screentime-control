@@ -13,12 +13,12 @@ export const legal = {
   supportEmail: 'support@mzdigitalbuys.com',
   legalName: 'MZDigitalbuys' as string | null,   // your full legal name or business name
   effectiveDate: '5 November 2026' as string | null, // e.g. '1 November 2026'
-  governingLaw: null as string | null,           // drafted: 'Singapore'
-  refundDays: null as number | null,             // drafted: 7
-  fixBusinessDays: null as number | null,        // drafted: 3
-  replyBusinessDays: null as number | null,      // drafted: 2
-  minAccessMonths: null as number | null,        // drafted: 12
-  closureNoticeDays: null as number | null,      // drafted: 30
-  deleteWithinDays: null as number | null,       // drafted: 30
-  backupDays: null as number | null,             // drafted: 30
+  governingLaw: 'Singapore' as string | null,    // drafted: 'Singapore'
+  refundDays: 7 as number | null,                // drafted: 7
+  fixBusinessDays: 3 as number | null,           // drafted: 3
+  replyBusinessDays: 2 as number | null,         // drafted: 2
+  minAccessMonths: 12 as number | null,          // drafted: 12
+  closureNoticeDays: 30 as number | null,        // drafted: 30
+  deleteWithinDays: 30 as number | null,         // drafted: 30
+  backupDays: 30 as number | null,               // drafted: 30
 };
