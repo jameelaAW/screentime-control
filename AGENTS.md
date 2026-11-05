@@ -80,3 +80,4 @@
 - A Payhip listing has been updated with a 'how it works' steps section describing the pay-first flow.
 - a plain-text Payhip listing for pasting was added via a docs commit
 - docs commit added iPhone Home Screen instructions and phone alerts line to the Start-here PDF
+- legal pages now reflect the project's legal name (docs commit)
