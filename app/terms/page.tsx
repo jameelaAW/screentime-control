@@ -22,9 +22,11 @@ export default function TermsPage() {
 
       <p><strong>6. Acceptable use.</strong> Do not try to get around the licence check, look at other people&apos;s data, overload or attack the service, copy it, or use it for anything unlawful.</p>
 
-      <p><strong>7. Availability and updates.</strong> You pay a one-time price for access, not for a fixed term. We will keep the service running for at least <Fill v={legal.minAccessMonths} suffix=" months" /> from your purchase and will give at least <Fill v={legal.closureNoticeDays} suffix=" days" /> notice before closing it. If feasible, we will give you a copy of your records on request. We may update, fix or improve the service. We take reasonable care, but the service may sometimes be unavailable, so please keep your own record of anything important.</p>
+      <p><strong>7. Availability and updates.</strong> You pay a one-time price for access, not for a fixed term. We will keep the service running for at least <Fill v={legal.minAccessMonths} suffix=" months" /> from your purchase and will give at least <Fill v={legal.closureNoticeDays} suffix=" days" /> notice before closing it. You can download a copy of your records yourself from the Account page at any time. We may update, fix or improve the service. We take reasonable care, but the service may sometimes be unavailable, so please keep your own record of anything important.</p>
 
       <p><strong>8. Accuracy.</strong> Totals depend on what you enter and on pressing start and stop. A timer that is not stopped is closed at the daily limit or after 3 hours, so a forgotten timer can record more time than was used. You can correct sessions in the app.</p>
+
+      <p><strong>8A. Phone alerts.</strong> Phone alerts are a convenience and are not guaranteed. Whether an alert reaches you depends on your phone, its settings (for example a Focus mode), your connection and the phone&apos;s push service (Apple, Google or Mozilla). An alert may arrive late or not at all, so please do not rely on alerts alone to supervise a child.</p>
 
       <p><strong>9. Suspension.</strong> We may suspend or close an account that breaks these terms, after warning you where reasonable. You can delete your account at any time from the Account page. Refunds are covered by our Refund Policy.</p>
 
