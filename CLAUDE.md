@@ -78,3 +78,4 @@
 - The repo has a docs/ folder with a Terms line for early accounts, a launch checklist, and a Payhip listing reference.
 - docs: fix test order in launch checklist — a recent docs commit updated the launch checklist to reflect correct test ordering.
 - A Payhip listing has been updated with a 'how it works' steps section describing the pay-first flow.
+- a plain-text Payhip listing for pasting was added via a docs commit
