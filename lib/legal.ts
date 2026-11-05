@@ -11,7 +11,7 @@ export const LEGAL_FINAL = false;
 
 export const legal = {
   supportEmail: 'support@mzdigitalbuys.com',
-  legalName: null as string | null,              // your full legal name or business name
+  legalName: 'MZDigitalbuys' as string | null,   // your full legal name or business name
   effectiveDate: null as string | null,          // e.g. '1 November 2026'
   governingLaw: null as string | null,           // drafted: 'Singapore'
   refundDays: null as number | null,             // drafted: 7
