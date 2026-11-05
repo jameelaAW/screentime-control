@@ -11,7 +11,7 @@ Order matters. Do not announce the product or share the link until step 10 passe
 4. Upgrade Vercel from Hobby to Pro before you take any payment. Hobby is for non-commercial personal use only (Vercel fair use guidelines and Terms of Service), and selling this app is commercial use. Pro is $20 per seat per month. In Vercel: Settings, Billing. You do this yourself (payment details).
    - The plan belongs to the whole Vercel team, so one Pro plan covers every project in that team, including mood-based meal, which is also sold on Payhip. Check that both projects are in the same team.
    - Option: take Pro for the first month and cancel if there are no sales.
-   - Status: you are on Hobby today. Done when Billing shows Pro.
+   - Status: DONE (5 November 2026). Billing shows Pro.
 
 ## C. Payhip
 5. Create the product at SGD 5.00 (currency SGD). Turn on licence keys for it. Paste the text from `docs/PAYHIP-LISTING.md` as the description. Check your fee per sale at this price. Keep the product unpublished or hidden until step 11.
