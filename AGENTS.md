@@ -82,3 +82,4 @@
 - docs commit added iPhone Home Screen instructions and phone alerts line to the Start-here PDF
 - legal pages now reflect the project's legal name (docs commit)
 - docs: set effective date on the legal pages was the most recent commit
+- AI review of legal pages focused on Terms alerts clause and download wording
