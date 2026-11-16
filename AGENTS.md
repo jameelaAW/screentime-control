@@ -86,3 +86,4 @@
 - docs: set effective date on the legal pages was the most recent commit
 - AI review of legal pages focused on Terms alerts clause and download wording
 - no new architectural decisions, gotchas, or technical changes in this commit; it is purely policy/documentation content
+- docs: refunds are made in Stripe, not Payhip; add 12-month deletion note
