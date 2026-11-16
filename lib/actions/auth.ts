@@ -2,6 +2,7 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { LEGAL_FINAL, legal } from '@/lib/legal';
 
 export type AuthState = { error?: string; notice?: string };
 
@@ -31,12 +32,13 @@ export async function signIn(_prev: AuthState, form: FormData): Promise<AuthStat
 export async function signUp(_prev: AuthState, form: FormData): Promise<AuthState> {
   const creds = readCredentials(form);
   if ('error' in creds) return creds;
+  if (LEGAL_FINAL && form.get('agree') !== 'yes') return { error: 'Please tick the box to agree to the Terms of Service and Privacy Policy.' };
   let signedIn = false;
   try {
     const origin = (await headers()).get('origin') || process.env.NEXT_PUBLIC_APP_URL || '';
     const { data, error } = await (await createClient()).auth.signUp({
       ...creds,
-      options: { emailRedirectTo: `${origin}/auth/callback` },
+      options: { emailRedirectTo: `${origin}/auth/callback`, data: { terms_version: legal.version, terms_accepted_at: new Date().toISOString() } },
     });
     if (error) return { error: error.message.toLowerCase().includes('already') ? 'That email already has an account. Try signing in.' : 'Could not create the account. Please try again.' };
     // With email confirmation off Supabase returns a session straight away; with it on, the caregiver must confirm first.

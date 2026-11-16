@@ -1,35 +1,25 @@
 import type { Metadata } from 'next';
-import { Fill, LegalShell, legalRobots } from '@/components/legal-bits';
+import { Clauses, Fill, LegalShell, legalRobots } from '@/components/legal-bits';
 import { legal } from '@/lib/legal';
 
 export const metadata: Metadata = { title: 'Refund Policy · Screen Time Control', robots: legalRobots };
+
+const REFUNDS: [string, string][] = [
+  ['What you purchase', 'Screen Time Control is sold as a one-time digital licence for SGD 5.00 through Payhip. There is no subscription. Access is provided after successful purchase and licence activation.'],
+  ['Voluntary seven-day technical-fault refund', `In addition to your statutory rights, you may request a refund within ${legal.refundDays} days of purchase if a material fault prevents you from creating or activating your account or using the Service substantially as described, and we cannot remedy the issue within ${legal.fixBusinessDays} business days after receiving enough information to investigate it.`],
+  ['Incorrect or duplicate charges', 'We will investigate and appropriately remedy duplicate or incorrect charges.'],
+  ['Change of mind and undisclosed features', 'We generally do not offer a voluntary change-of-mind refund after activation. We do not offer a voluntary refund merely because the Service lacks a feature that was not represented as included. These limits do not affect statutory rights or remedies.'],
+  ['Your legal rights', 'Nothing in this policy excludes or restricts rights or remedies available under applicable Singapore consumer protection law or other mandatory law. The seven-day period in section 2 applies only to our additional voluntary refund arrangement, not to statutory claims.'],
+  ['How to request a refund', `Email ${legal.supportEmail} from the email address used for purchase. Include your Payhip order number and a short description of the problem. We aim to reply within ${legal.replyBusinessDays} business days.`],
+  ['Processing and access after a refund', 'Approved refunds are processed through Payhip to the original payment method where available; arrival time depends on the payment provider and bank. Once a refund is processed, we will suspend access associated with that purchase. You can still sign in to the Account page to download or delete your data. Otherwise, the account and its data are deleted 12 months after the refund, as described in the Privacy Policy.'],
+  ['Payhip terms', 'Payhip may apply separate checkout or payment-processing terms. Those terms do not remove any mandatory rights you have against the seller under applicable law.'],
+];
 
 export default function RefundsPage() {
   return (
     <LegalShell title="Refund Policy">
       <p className="muted">Effective date: <Fill v={legal.effectiveDate} /></p>
-      <p>You can get a refund within <Fill v={legal.refundDays} suffix=" days" /> of buying if you cannot use Screen Time Control because of a fault we cannot fix.</p>
-      <p><strong>What you are buying.</strong> A one-time digital licence for Screen Time Control (SGD 5), sold through Payhip. You get access as soon as you buy, so we cannot take it back once it has been delivered, except as set out here.</p>
-
-      <h2>When we refund</h2>
-      <ul>
-        <li><strong>A fault we cannot fix.</strong> Within <Fill v={legal.refundDays} suffix=" days" /> of purchase, you cannot create or activate your account, or use the app as described in the guide, and we have not fixed it within <Fill v={legal.fixBusinessDays} suffix=" business days" /> of you telling us.</li>
-        <li><strong>A mistake in the sale.</strong> You were charged twice for the same purchase, or the wrong amount.</li>
-        <li><strong>Where the law requires it.</strong> Nothing here limits any right you have under consumer protection law.</li>
-      </ul>
-
-      <h2>When we do not refund</h2>
-      <p>We do not refund because you changed your mind after activating your licence, or because the app does not offer a feature that was not described.</p>
-
-      <h2>How to ask</h2>
-      <p>Email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address you used to buy. Include your Payhip order number and a short note on what went wrong. We aim to reply within <Fill v={legal.replyBusinessDays} suffix=" business days" />.</p>
-
-      <h2>What happens next</h2>
-      <ul>
-        <li><strong>If we agree,</strong> we refund through Payhip to your original payment method. The time it takes to reach you depends on Payhip and your bank or card provider.</li>
-        <li><strong>Your access stops.</strong> Payhip disables your licence key, and we suspend your account, so the app no longer works for you. We keep your data so you can still sign in to the Account page and delete it yourself, or ask us to delete it. We do not delete it automatically.</li>
-        <li>Payhip may have its own buyer terms that also apply to your order.</li>
-      </ul>
+      <Clauses items={REFUNDS} />
     </LegalShell>
   );
 }

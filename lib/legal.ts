@@ -7,12 +7,14 @@
  * While false, the pages show a "draft, not yet in force" banner, ask search engines to ignore them,
  * and the sign-in / sign-up screens do not link to them.
  */
-export const LEGAL_FINAL = false;
+export const LEGAL_FINAL = true;
 
 export const legal = {
   supportEmail: 'support@mzdigitalbuys.com',
   legalName: 'MZDigitalbuys' as string | null,   // your full legal name or business name
-  effectiveDate: '5 November 2026' as string | null, // e.g. '1 November 2026'
+  effectiveDate: '16 November 2026' as string | null, // e.g. '1 November 2026'
+  /** Version of the Terms + Privacy Policy that a new account accepts; stored with the account at sign-up. */
+  version: '2026-11-16',
   governingLaw: 'Singapore' as string | null,    // drafted: 'Singapore'
   refundDays: 7 as number | null,                // drafted: 7
   fixBusinessDays: 3 as number | null,           // drafted: 3

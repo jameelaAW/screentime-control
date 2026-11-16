@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { LEGAL_FINAL } from '@/lib/legal';
+import { LEGAL_FINAL, legal } from '@/lib/legal';
 
 /** A value that may not be decided yet: shows the value, or a highlighted [to be confirmed]. */
 export function Fill({ v, suffix = '' }: { v: string | number | null; suffix?: string }) {
@@ -32,4 +32,15 @@ export function LegalShell({ title, children }: { title: string; children: React
       </p>
     </main>
   );
+}
+
+/** Plain text with the support email turned into a mailto link. */
+export function T({ children }: { children: string }) {
+  const parts = children.split(legal.supportEmail);
+  return <>{parts.map((part, i) => <span key={i}>{part}{i < parts.length - 1 && <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a>}</span>)}</>;
+}
+
+/** Numbered clauses: [heading, text] pairs, rendered as "1. Heading. Text". */
+export function Clauses({ items }: { items: [string, string][] }) {
+  return <>{items.map(([h, t], i) => <p key={h}><strong>{i + 1}. {h}.</strong> <T>{t}</T></p>)}</>;
 }

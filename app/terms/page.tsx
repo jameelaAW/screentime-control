@@ -1,42 +1,39 @@
 import type { Metadata } from 'next';
-import { Fill, LegalShell, legalRobots } from '@/components/legal-bits';
+import { Clauses, Fill, LegalShell, legalRobots } from '@/components/legal-bits';
 import { legal } from '@/lib/legal';
 
 export const metadata: Metadata = { title: 'Terms of Service · Screen Time Control', robots: legalRobots };
+
+const E = legal.supportEmail;
+
+const TERMS: [string, string][] = [
+  ['Who provides the service', `Screen Time Control (the "Service") is operated by ${legal.legalName}, trading as MZ Digital Buys ("we", "us", "our"). Contact: ${E}.`],
+  ['What the Service does', "The Service is a browser-based record-keeping tool for adults to enter and review children's screen-time sessions against a daily limit. It does not block or lock devices, filter content, access a child's device, or monitor what a child watches, plays or types. It is not a child-safety or supervision service. You remain responsible for supervising children in your care."],
+  ['Eligibility and authority', 'You must be at least 18 years old and have authority to use the Service and enter the information you provide. If you use it in a childcare setting, you confirm that you are authorised to act for that organisation and to enter the relevant information. You must provide appropriate notices and obtain any consent required by applicable law; your use does not remove our own legal responsibilities.'],
+  ['Purchase and licence', 'The price is SGD 5 for a one-time digital licence, with no recurring subscription. Payment and receipts are processed through Payhip. Upon valid payment, you receive a licence key for one account. Subject to these Terms, we grant you a limited, non-exclusive, non-transferable right to access and use the Service for children in your household or an authorised childcare setting. You may not sell, share, rent or transfer your licence key or account outside that permitted group. The licence does not transfer ownership of the Service or its software.'],
+  ['Early free accounts', 'Accounts created before paid licences were introduced may continue to access the Service without purchasing a key, subject to these Terms. Free access is specific to the existing account and does not create a right to a refund of amounts never paid.'],
+  ['Account security', 'Provide accurate account information, protect your credentials and notify us promptly of suspected unauthorised use. You are responsible for activity you authorise under your account. This does not exclude any responsibility we have for our own acts, omissions or legal obligations.'],
+  ['Information you enter', "You retain any rights you hold in the records you enter. You authorise us and our service providers to process those records only as reasonably necessary to provide, secure, support and maintain the Service and as explained in the Privacy Policy. Enter only information you are entitled to provide. Use a nickname for each child, not a full name, and do not include health or other sensitive information in notes."],
+  ['Acceptable use', "You must not circumvent licence controls, attempt to access another user's records, interfere with service security or availability, reverse engineer the Service except as permitted by law, infringe intellectual property rights, or use the Service unlawfully."],
+  ['Service availability and closure', `We commit to making the Service available for at least ${legal.minAccessMonths} months after each paid purchase, subject to temporary maintenance, outages and events outside our reasonable control. We do not guarantee uninterrupted or error-free operation. We will give at least ${legal.closureNoticeDays} days' advance notice of planned permanent closure where reasonably practicable. If we permanently discontinue the Service before the end of a purchaser's ${legal.minAccessMonths}-month period, we will provide an appropriate remedy consistent with applicable law. You may export your records through the Account page while your account remains accessible.`],
+  ['Accuracy and timers', "Screen-time totals are based on information entered by users and the operation of the start/stop controls. You should check and correct entries as necessary. If a timer is left running, the Service stops it when the child's daily limit is reached, or after 3 hours if that comes first, and records the end time at that point. If phone alerts are on, this happens automatically within about a minute, even when the app is closed, and an alert is sent. If alerts are off, the timer is stopped and recorded at that point the next time the app is opened, so totals shown elsewhere before then may not be up to date. The Service is not a guaranteed measurement of actual device usage."],
+  ['Optional phone alerts', "If enabled, phone alerts are a convenience feature and may be delayed or fail because of device settings, connectivity or third-party push services. Do not rely on alerts to supervise children. Alert text may include a child's nickname and may be visible on a locked device, as described in the Privacy Policy."],
+  ['Suspension and termination', 'We may suspend access where reasonably necessary for security, suspected misuse, material breach or a refunded purchase. Where reasonable, we will give notice and an opportunity to address the issue. You may delete your account using the Account page. Suspension or termination does not remove statutory rights or our obligations concerning personal data. Refunds are governed by the Refund Policy.'],
+  ['Intellectual property', 'We or our licensors own the Service, including its software, interface, branding and other intellectual property, except content and records supplied by users. No rights are granted beyond the limited licence expressly stated in these Terms.'],
+  ['Disclaimer', 'We take reasonable care in providing the Service, but do not promise that it will always be uninterrupted, available or free of defects. Nothing in these Terms excludes a warranty, condition or remedy that cannot lawfully be excluded.'],
+  ['Liability', 'Nothing in these Terms excludes or restricts liability for death or personal injury resulting from negligence, fraud or fraudulent misrepresentation, or any other liability that cannot lawfully be excluded or restricted. Subject to those protections and to any applicable statutory reasonableness requirement, we exclude liability for indirect or consequential loss to the extent permitted by law.'],
+  ['Changes', 'We may update these Terms for legal, security or operational reasons. We will notify you of material changes before they take effect through the Service or your registered email. Changes will not retrospectively remove accrued rights, and any change requiring your consent will be handled accordingly.'],
+  ['Notices and support', `We may send service-related notices to your registered email or display them within the Service. For questions or complaints, contact ${E}. Please keep your email address current.`],
+  ['General provisions', 'If a provision is invalid or unenforceable, the remaining provisions continue to apply where legally possible. Our failure to enforce a provision immediately does not waive it. We may transfer this agreement as part of a genuine business reorganisation or sale only where lawful and without improperly reducing your rights; we will notify you of a material transfer. Events beyond reasonable control may affect performance but do not automatically extinguish statutory rights.'],
+  ['Governing law', 'These Terms are governed by Singapore law. Subject to any mandatory rights under applicable law, the Singapore courts have jurisdiction over disputes relating to the Service.'],
+];
 
 export default function TermsPage() {
   return (
     <LegalShell title="Terms of Service">
       <p className="muted">Effective date: <Fill v={legal.effectiveDate} /></p>
-      <p>By creating an account or activating a licence key you agree to these terms. If you do not agree, please do not use Screen Time Control.</p>
-
-      <p><strong>1. Who we are.</strong> Screen Time Control is run by <Fill v={legal.legalName} />, trading as MZ Digital Buys (&quot;we&quot;). Contact: <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a>.</p>
-
-      <p><strong>2. What the service is, and is not.</strong> Screen Time Control is a tool for adults to record and track children&apos;s screen time against a daily limit. It stores the times you enter. It <strong>does not</strong> block or lock devices, filter websites or apps, or monitor what a child watches, plays or types. It is not a child-safety, supervision or monitoring service, and you remain responsible for supervising the children in your care.</p>
-
-      <p><strong>3. Your licence.</strong> Your purchase gives you a licence to use the service. <strong>One licence key activates one account.</strong> You may use it for the children in your own household or in the childcare setting you run. You may not share your key or account with others outside that group, or sell, rent or give away your key or access. If you created your account before paid licences began, you keep access to that account without buying a key. That access is for that account only, it is on the same terms as a paid licence, and it is not refundable because nothing was paid.</p>
-
-      <p><strong>4. Your account.</strong> Give accurate details, keep your password private, and tell us if you think someone else has used your account. You are responsible for what happens under your account. You must be an adult.</p>
-
-      <p><strong>5. Your information.</strong> You must have the right to record the information you enter about the children in your care. Keep notes factual, and do not enter health or other sensitive details. Our Privacy Policy explains how we handle data.</p>
-
-      <p><strong>6. Acceptable use.</strong> Do not try to get around the licence check, look at other people&apos;s data, overload or attack the service, copy it, or use it for anything unlawful.</p>
-
-      <p><strong>7. Availability and updates.</strong> You pay a one-time price for access, not for a fixed term. We will keep the service running for at least <Fill v={legal.minAccessMonths} suffix=" months" /> from your purchase and will give at least <Fill v={legal.closureNoticeDays} suffix=" days" /> notice before closing it. You can download a copy of your records yourself from the Account page at any time. We may update, fix or improve the service. We take reasonable care, but the service may sometimes be unavailable, so please keep your own record of anything important.</p>
-
-      <p><strong>8. Accuracy.</strong> Totals depend on what you enter and on pressing start and stop. A timer that is not stopped is closed at the daily limit or after 3 hours, so a forgotten timer can record more time than was used. You can correct sessions in the app.</p>
-
-      <p><strong>8A. Phone alerts.</strong> Phone alerts are a convenience and are not guaranteed. Whether an alert reaches you depends on your phone, its settings (for example a Focus mode), your connection and the phone&apos;s push service (Apple, Google or Mozilla). An alert may arrive late or not at all, so please do not rely on alerts alone to supervise a child.</p>
-
-      <p><strong>9. Suspension.</strong> We may suspend or close an account that breaks these terms, after warning you where reasonable. You can delete your account at any time from the Account page. Refunds are covered by our Refund Policy.</p>
-
-      <p><strong>10. No warranties.</strong> To the fullest extent the law allows, the service is provided &quot;as is&quot; and we do not promise it will be uninterrupted or error-free.</p>
-
-      <p><strong>11. Limit of liability.</strong> To the fullest extent the law allows, we are not liable for indirect or consequential loss, and our total liability to you for anything connected with the service is limited to the price you paid. Nothing in these terms limits any right you have under law that cannot be excluded, including consumer protection rights.</p>
-
-      <p><strong>12. Changes to these terms.</strong> If we make a change that matters, we will tell you by email or in the app before it takes effect.</p>
-
-      <p><strong>13. Governing law.</strong> These terms are governed by the laws of <Fill v={legal.governingLaw} />, and the courts of <Fill v={legal.governingLaw} /> will decide any dispute, unless the law in your country gives you the right to use your local courts.</p>
+      <p>Please read these Terms before buying or using Screen Time Control. By affirmatively accepting these Terms at checkout or account creation, you agree to them. If you do not agree, do not purchase or use the service.</p>
+      <Clauses items={TERMS} />
     </LegalShell>
   );
 }

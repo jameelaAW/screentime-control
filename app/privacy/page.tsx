@@ -1,67 +1,32 @@
 import type { Metadata } from 'next';
-import { Fill, LegalShell, legalRobots } from '@/components/legal-bits';
+import { Clauses, Fill, LegalShell, T, legalRobots } from '@/components/legal-bits';
 import { legal } from '@/lib/legal';
 
 export const metadata: Metadata = { title: 'Privacy Policy · Screen Time Control', robots: legalRobots };
+
+const E = legal.supportEmail;
+
+const PRIVACY: [string, string][] = [
+  ['Who uses the Service', "The Service is intended for adults, including parents, guardians and authorised childcare personnel. Children do not create accounts. Nevertheless, the records entered by adults may contain children's personal data."],
+  ['Personal data collected', "We process the adult account email address and authentication information (passwords are hashed by our authentication provider); each child's nickname, optional age, notes and daily limit; screen-time sessions (start/end times, duration, device and activity type, notes); change history (previous and new values, reasons and timestamps); hashed licence-key records, activation dates and attempts; the date and version of the Terms and Privacy Policy you accepted; time zone, sign-in cookies, browser reminder preferences, IP address, browser/server logs; support messages; and, if enabled, push subscriptions and notification data. Payhip handles payments and shares with us the order details needed to issue and support your licence, such as your email address and order number; we do not receive full payment-card details."],
+  ['Why we use data', 'We use data to authenticate accounts, activate licences, provide screen-time tracking and exports, maintain change history, deliver requested alerts and account emails, respond to support requests, protect the Service, investigate misuse, and meet legal obligations. We do not use the data for behavioural advertising, we do not sell it, and we do not send marketing emails.'],
+  ["Children's data and authority", 'Adults should enter only the minimum information needed: a nickname, not a full name, and no sensitive details. Adults submitting information must have appropriate authority and provide required notices and obtain required consent where applicable; the app asks you to confirm this when you add a child. We will assess the applicable PDPA obligations based on whether we determine processing purposes ourselves or process data for a childcare organisation as its data intermediary.'],
+  ['Service providers and overseas processing', 'We use Supabase (database and authentication), Vercel (hosting; potentially multiple countries), Resend (account emails), Cloudflare (domain/email forwarding), Microsoft Outlook (support inbox), Payhip (checkout, receipts and licence keys), and relevant Apple, Google or Mozilla push services when alerts are enabled. Processing may occur outside Singapore. We will take measures required by the PDPA for overseas transfers, including appropriate contractual or other safeguards where required.'],
+  ['Phone notifications', "If you enable alerts, your browser or device supplies push subscription details, and notification text may include a child's nickname. Notification content may be handled by the relevant push service and may appear on a lock screen or be seen by others with access to the device. You can disable notifications in the Service or device settings."],
+  ['Cookies and tracking', 'We use sign-in and time-zone cookies, and limited browser storage to remember which reminders you dismissed. We do not use advertising or analytics trackers.'],
+  ['Retention', `Account records, children's details, sessions and change history are kept while an account is active. Account deletion removes live account records immediately; provider backups may retain a copy for up to ${legal.backupDays} days. If a purchase is refunded, the account is suspended and its data is deleted 12 months after suspension, with a reminder 30 days before, unless you reactivate or delete it sooner. Accounts with no sign-in for 24 months are deleted after a 30-day warning email. Licence activation attempts are kept for 90 days. Support emails are kept for 2 years, and sales and refund records for 5 years for tax purposes. Data linked to an open refund, dispute or legal claim is kept until it is resolved.`],
+  ['Access, correction, withdrawal and deletion', `You may export children's records and sessions and request access to or correction of personal data by emailing ${E}. You may delete your account in the Account page, or ask us by email and we will do it within ${legal.deleteWithinDays} days. You may withdraw consent by contacting us; withdrawal may affect our ability to provide the Service and does not necessarily require deletion of data we lawfully need to retain. We will respond in accordance with applicable PDPA requirements, including any permitted exceptions and applicable fees.`],
+  ['Security and incidents', 'We use encrypted connections and account-level access controls. Authorised personnel may access records where reasonably needed for support, security or legal compliance, subject to appropriate safeguards. No system is completely secure. We assess data incidents and make notifications to the PDPC and affected individuals where required by law.'],
+  ['Contact and complaints', `For privacy requests or concerns, contact our Data Protection Officer at ${E}. You may also contact Singapore's Personal Data Protection Commission about concerns relating to personal data.`],
+  ['Updates', 'We may update this policy when practices or legal requirements change. Material changes will be notified by email or in the Service before taking effect where practicable. The effective date above indicates the current version.'],
+];
 
 export default function PrivacyPage() {
   return (
     <LegalShell title="Privacy Policy">
       <p className="muted">Effective date: <Fill v={legal.effectiveDate} /></p>
-      <p>Screen Time Control stores only what it needs to track children&apos;s screen time for the adults who look after them. This policy explains what we collect, who handles it, and how you can control it.</p>
-      <p><strong>Who we are.</strong> <Fill v={legal.legalName} />, trading as MZ Digital Buys (&quot;we&quot;), runs Screen Time Control. You can reach us, and our data protection contact, at <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a>.</p>
-
-      <h2>What we collect</h2>
-      <table className="guide-table">
-        <thead><tr><th>Data</th><th>Why we hold it</th></tr></thead>
-        <tbody>
-          <tr><td>Your email address and password</td><td>To create and protect your account. Your password is stored scrambled (hashed) by our sign-in provider, so we cannot read it.</td></tr>
-          <tr><td>Children&apos;s details you enter: name, optional age (0 to 18), notes, daily limit</td><td>To show each child&apos;s screen time against their limit.</td></tr>
-          <tr><td>Screen-time records you enter: start and end time, length, device type, activity type, notes</td><td>To work out daily totals and show history.</td></tr>
-          <tr><td>A change history: each add, edit and delete, with the old and new values, your reason, and the time</td><td>To keep records accurate and traceable.</td></tr>
-          <tr><td>A scrambled (hashed) copy of your Payhip licence key, the date you activated it, and the times of activation attempts</td><td>To make sure one key activates one account, and to stop key guessing.</td></tr>
-          <tr><td>If you turn on phone alerts: a code your phone&apos;s browser gives us to reach it (the push address and keys), and your time zone</td><td>To send alerts to that phone. You can turn them off at any time; deleting your account removes them.</td></tr>
-          <tr><td>Your time zone, sign-in cookies, and a small note in your browser remembering which reminders you dismissed</td><td>To show the right day, keep you signed in, and avoid repeating reminders.</td></tr>
-          <tr><td>Standard server records such as IP address and browser type</td><td>Kept by our hosting and database providers for security and fault-finding.</td></tr>
-          <tr><td>Messages you send to support</td><td>To answer you.</td></tr>
-        </tbody>
-      </table>
-      <p><strong>Payments</strong> are handled by Payhip. We never see your card details.</p>
-      <p><strong>What we do not collect:</strong> your location, anything on a child&apos;s device, your contacts, or advertising or analytics trackers. We do not sell your data and we do not send marketing emails.</p>
-
-      <h2>Children&apos;s information</h2>
-      <p>Screen Time Control is for adults: parents, guardians and childcare staff. Children do not have accounts or use the app. You are responsible for having the right to record information about the children in your care. We recommend a first name or nickname only, and please do not put health or other sensitive details in notes.</p>
-
-      <h2>Who handles your data for us</h2>
-      <table className="guide-table">
-        <thead><tr><th>Provider</th><th>What it does</th><th>Where</th></tr></thead>
-        <tbody>
-          <tr><td>Supabase</td><td>Database and sign-in</td><td>Singapore</td></tr>
-          <tr><td>Vercel</td><td>Hosts the website</td><td>Servers in several countries</td></tr>
-          <tr><td>Your phone&apos;s push service (Google, Apple or Mozilla, depending on your phone)</td><td>Delivers phone alerts. It sees the alert text, which includes a child&apos;s first name</td><td>Global</td></tr>
-          <tr><td>Resend</td><td>Sends account emails (confirm sign-up, reset password)</td><td>Tokyo</td></tr>
-          <tr><td>Cloudflare</td><td>Our domain and support-email forwarding</td><td>Global</td></tr>
-          <tr><td>Microsoft Outlook</td><td>Our support inbox</td><td>Global</td></tr>
-          <tr><td>Payhip</td><td>Sales, receipts and licence keys</td><td>Global</td></tr>
-        </tbody>
-      </table>
-      <p>Some of these providers store or process data outside Singapore. We choose reputable providers and rely on their security commitments.</p>
-
-      <h2>How long we keep it</h2>
-      <ul>
-        <li>Your account, children and sessions stay until you or we delete them. Deleting a child deletes that child&apos;s sessions.</li>
-        <li>The change history is kept while your account exists, and is deleted with it.</li>
-        <li>You can delete your account yourself at any time from the Account page in the app. That deletes your account, children, sessions, change history and licence record straight away. If you would rather ask us, email us and we will do it within <Fill v={legal.deleteWithinDays} suffix=" days" />. Our provider&apos;s backups may hold a copy for up to <Fill v={legal.backupDays} suffix=" days" /> more.</li>
-      </ul>
-
-      <h2>Your choices and rights</h2>
-      <p>You can download a copy of your children and sessions yourself at any time from the Account page. You can also ask us to give you a copy of your data, correct it, or delete it, and you can withdraw your consent at any time by deleting your account from the Account page. Otherwise email <a href={`mailto:${legal.supportEmail}`}>{legal.supportEmail}</a> from the address on your account. If you are unhappy with our answer you can complain to Singapore&apos;s Personal Data Protection Commission.</p>
-
-      <h2>How we protect it</h2>
-      <p>Data travels over encrypted connections. Each account can see only its own children, sessions and history; this is enforced inside the database, not only on screen. We can access stored data when needed to give support, and we do so only for that. If a breach affects you, we will tell you as the law requires.</p>
-
-      <h2>Changes</h2>
-      <p>If we change this policy in a way that matters, we will tell you by email or in the app before it takes effect. The date at the top shows the latest version.</p>
+      <p><T>{`This policy explains how ${legal.legalName}, trading as MZ Digital Buys, collects, uses, discloses, retains and protects personal data when adults use Screen Time Control. Contact our Data Protection Officer at ${E}.`}</T></p>
+      <Clauses items={PRIVACY} />
     </LegalShell>
   );
 }

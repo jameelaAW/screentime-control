@@ -25,3 +25,4 @@
 @media print{.report-scroll{overflow:visible}.report .guide-table{min-width:0;font-size:10.5pt}.report-child{break-before:auto}.report .guide-table tr{break-inside:avoid}}
 .report .nowrap{white-space:nowrap}
 @media(max-width:600px){.report .guide-table{font-size:13px;min-width:0}.report .guide-table th,.report .guide-table td{padding:7px 8px}}
+.check-row,.auth-card label.check-row{display:flex;align-items:flex-start;gap:10px;font-weight:normal;font-size:13px;line-height:1.5}.check-row input,.auth-card .check-row input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;padding:0}

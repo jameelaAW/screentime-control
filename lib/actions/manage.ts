@@ -12,8 +12,9 @@ export async function manageRecord(form:FormData):Promise<{error?:string;success
  if(operation!=='delete'){
  const notes=String(form.get('notes')||'').trim();if(notes.length>2000)return {error:'Keep notes under 2,000 characters.'};
  if(entity==='child'){
+ if(operation==='create'&&form.get('carer')!=='yes')return {error:'Please confirm you are the parent, guardian or an authorised carer.'};
  const name=String(form.get('name')||'').trim(),ageText=String(form.get('age')||''),age=ageText===''?null:Number(ageText),limit=Number(form.get('daily_limit_minutes'));
- if(name.length<1||name.length>80)return {error:'Enter a name (1–80 characters).'};
+ if(name.length<1||name.length>80)return {error:'Enter a nickname (1–80 characters).'};
  if(age!==null&&(!Number.isInteger(age)||age<0||age>18))return {error:'Age must be 0–18.'};
  if(!Number.isInteger(limit)||limit<1||limit>1440)return {error:'Daily limit must be 1–1,440 minutes.'};
  payload={name,age,daily_limit_minutes:limit,notes};
