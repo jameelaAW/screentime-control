@@ -16,6 +16,7 @@
 - users can delete their own account and trigger a refund process
 - test coverage was added for alert delivery verifying what the push service answered (feat commit).
 - test notifications use local delivery (not push infrastructure) so that failed deliveries can be attributed to code/logic bugs rather than phone notification settings
+- child form now asks for a nickname only, not a full name
 
 ## Architecture
 
