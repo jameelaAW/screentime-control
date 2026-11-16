@@ -8,9 +8,12 @@ is kept, and they can still sign in to the **Account** page to delete it themsel
 ## Steps
 
 1. **Check the request** against the Refund Policy (https://screentime-control.vercel.app/refunds).
-2. **Refund in Payhip.** Open the order in your Payhip dashboard and refund it. Payhip disables the
-   licence key by itself when an order is refunded.
-3. **Find the buyer's licence key** on the same Payhip order. (It looks like `ABCDE-FGHIJ-KLMNO-PQRST`.)
+2. **Refund the payment in Stripe.** Payhip has no refund button. In Payhip go to **Account → Settings →
+   Payment Details → Stripe → Manage**, open **Payments**, find the buyer's payment (search their email),
+   then **⋯ → Refund payment → full amount → Refund**. Payhip picks up the refund automatically.
+   (If a buyer paid by PayPal: PayPal → Activity → the payment → ⋯ → Refund.) Stripe keeps its fee.
+   If you cannot refund there, ask Payhip support with the order ID.
+3. **Find the buyer's licence key** on the Payhip order (Customers → View order details). (It looks like `ABCDE-FGHIJ-KLMNO-PQRST`.)
 4. **Pause the account in Supabase.**
    - Open https://supabase.com/dashboard/project/yyrjajgslppxjspimthj/sql/new
    - Paste this, replacing the key, and press **Run**:
@@ -27,7 +30,8 @@ is kept, and they can still sign in to the **Account** page to delete it themsel
 
    - The result should say **`1 licence(s) suspended`**. If it says `0`, the key or email did not match:
      check for a typo, or that the buyer used a different email in the app than on Payhip (use the key then).
-5. **Reply to the buyer** at support@mzdigitalbuys.com, saying the refund is done and the account is paused.
+5. **Reply to the buyer** from the support inbox (mzdigitalbuys@outlook.com, which receives support@mzdigitalbuys.com): the refund is done, the account is paused, and its data will be deleted 12 months after the refund unless they delete it sooner.
+6. **Note the date** of the refund, so the data can be deleted after 12 months (see the retention schedule).
 
 ## What the buyer sees
 
